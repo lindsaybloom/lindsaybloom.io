@@ -37,7 +37,7 @@ module.exports = {
       resolve: "gatsby-source-contentful",
       options: {
         spaceId: "sdgc3wpiox9z",
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        accessToken: "VygsV8cfARSa5qilfeNy8ciVhCmx2Cp4R5PP0vMNWrc", //process.env.CONTENTFUL_ACCESS_TOKEN,
         host: process.env.CONTENTFUL_HOST,
       },
     },
