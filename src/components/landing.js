@@ -63,7 +63,7 @@ const Landing = props => {
           json
         }
       }
-      image: contentfulIcon(contentfulid: { eq: "profile" }) {
+      image: contentfulIcon(contentfulid: { eq: "bitmoji" }) {
         id
         file {
           fixed {
@@ -73,7 +73,7 @@ const Landing = props => {
             srcWebp
             srcSetWebp
           }
-          fluid(maxWidth: 319, quality: 80) {
+          fluid {
             base64
             tracedSVG
             srcWebp

@@ -5,13 +5,12 @@ import Jobs from "../components/jobs"
 
 const shellStyles = css``
 
-const JobPage = ({ pageContext }) => 
+const JobPage = ({ pageContext }) => (
   <Layout css={shellStyles}>
-    {console.log(pageContext.content)}
     {pageContext.content.map(c => {
       return <p>{c.company}</p>
     })}
   </Layout>
-
+)
 
 export default JobPage

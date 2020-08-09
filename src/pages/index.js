@@ -13,9 +13,9 @@ import Landing from "../components/landing"
 import About from "../components/about"
 
 const IndexPage = () => {
-  const data = useStaticQuery(graphql`
+  const { jobs, projects } = useStaticQuery(graphql`
     {
-      allContentfulJob(sort: { fields: startDate, order: ASC }) {
+      jobs: allContentfulJob(sort: { fields: startDate, order: ASC }) {
         edges {
           node {
             company
@@ -26,6 +26,26 @@ const IndexPage = () => {
               json
             }
             website
+          }
+        }
+      }
+      projects: allContentfulProject {
+        edges {
+          node {
+            id
+            name
+            url
+            description {
+              json
+            }
+            media {
+              fluid {
+                base64
+                tracedSVG
+                srcWebp
+                srcSetWebp
+              }
+            }
           }
         }
       }
@@ -45,8 +65,8 @@ const IndexPage = () => {
             {/* <SEO title="Home" /> */}
             <Landing />
             <About />
-            <Jobs jobs={data.allContentfulJob.edges} />
-            <Projects />
+            <Jobs jobs={jobs.edges} />
+            <Projects projects={projects.edges} />
           </Layout>
         </Box>
       </Grommet>
