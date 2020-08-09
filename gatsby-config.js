@@ -27,7 +27,7 @@ module.exports = {
         background_color: "black",
         theme_color: "gray",
         display: "minimal-ui",
-        icon: "assets/LB_LOGO.png",
+        icon: "/assets/LB_LOGO.png",
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
