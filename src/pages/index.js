@@ -3,6 +3,7 @@ import { Link } from "gatsby"
 import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Jobs from "../components/jobs"
+import Projects from "../components/Projects"
 import { Grommet, Box } from "grommet"
 import theme from "../styles/theme"
 // import SEO from "../components/seo"
@@ -45,6 +46,7 @@ const IndexPage = () => {
             <Landing />
             <About />
             <Jobs jobs={data.allContentfulJob.edges} />
+            <Projects />
           </Layout>
         </Box>
       </Grommet>

@@ -6,7 +6,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import * as contentful from "contentful"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Img from "gatsby-image"
-import { Reactjs, Js, Cart } from "grommet-icons"
+import { Reactjs, Js, Cart, CreditCard } from "grommet-icons"
 
 const Image = styled(Img)`
   img {
@@ -43,6 +43,11 @@ const StyledJs = styled(Js)`
   }
 `
 const StyledCart = styled(Cart)`
+  height: 100px;
+  width: 100px;
+`
+
+const StyledCreditCard = styled(CreditCard)`
   height: 100px;
   width: 100px;
 `
@@ -110,6 +115,7 @@ const Landing = props => {
           <StyledReact />
           <StyledJs />
           <StyledCart />
+          <StyledCreditCard />
         </Box>
       </Box>
     </section>
