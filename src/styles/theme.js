@@ -465,7 +465,7 @@ const theme = {
         horizontal: "small",
       },
       color: {
-        dark: "status-critical",
+        dark: "accent-2",
         light: "status-critical",
       },
     },
