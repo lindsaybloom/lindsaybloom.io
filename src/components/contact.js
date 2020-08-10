@@ -21,7 +21,7 @@ const StyledBox = styled(Box)`
 const Contact = props => {
   return (
     <section id="contact">
-      <Box margin={{ top: "large" }}>
+      <Box margin={{ top: "large" }} align="center">
         <Heading>Get in touch with me!</Heading>
         <Text>
           Please email me directly at{" "}
@@ -32,7 +32,7 @@ const Contact = props => {
         </Text>
 
         <Anchor
-          margin={{ top: "medium" }}
+          margin={{ top: "large" }}
           href="mailto: lindsaybloomdev@gmail.com"
         >
           <StyledBox
