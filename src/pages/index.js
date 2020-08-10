@@ -67,7 +67,7 @@ const IndexPage = () => {
             <Landing />
             <About />
             <Jobs jobs={jobs.edges} />
-            <Projects projects={projects.edges} />
+            {/* <Projects projects={projects.edges} /> */}
             <Contact />
           </Layout>
         </Box>

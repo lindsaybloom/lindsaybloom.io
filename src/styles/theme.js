@@ -21,7 +21,7 @@ const theme = {
       },
       active: "#b0b0b0",
       black: "#000000",
-      border: "rgba(255,255,255,0.33)",
+      border: "accent-2",
       brand: brand,
       control: control,
       focus: focus,
