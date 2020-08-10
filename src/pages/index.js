@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import Jobs from "../components/jobs"
 import Projects from "../components/projects"
 import Contact from "../components/contact"
+import Tools from "../components/tools"
 import { Grommet, Box } from "grommet"
 import theme from "../styles/theme"
 // import SEO from "../components/seo"
@@ -66,6 +67,7 @@ const IndexPage = () => {
             {/* <SEO title="Home" /> */}
             <Landing />
             <About />
+            <Tools />
             <Jobs jobs={jobs.edges} />
             {/* <Projects projects={projects.edges} /> */}
             <Contact />

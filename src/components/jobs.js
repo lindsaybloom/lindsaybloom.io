@@ -35,7 +35,7 @@ const Jobs = ({ jobs }) => {
 
   return (
     <section id="jobs">
-      <Box pad={{ bottom: "300px" }}>
+      <Box pad={{ bottom: "200px" }}>
         <Heading>Where I've Worked</Heading>
         <Tabs justify="start" alignControls="start">
           {reversedJobs.map(j => (

@@ -58,7 +58,7 @@ const About = props => {
 
   return (
     <section id="about">
-      <Box pad={{ bottom: "300px" }}>
+      <Box pad={{ bottom: "150px" }}>
         <Heading>Who am I?</Heading>
         <Box direction="row" justify="between" align="center">
           <Box direction="column" width="60%">
