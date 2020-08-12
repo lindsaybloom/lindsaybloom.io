@@ -6,13 +6,14 @@ import Jobs from "../components/jobs"
 import Projects from "../components/projects"
 import Contact from "../components/contact"
 import Tools from "../components/tools"
-import { Grommet, Box } from "grommet"
+import { Grommet, Box, ResponsiveContext } from "grommet"
 import theme from "../styles/theme"
 // import SEO from "../components/seo"
 import "../styles/globals.css"
 import "../styles/styles.css"
 import Landing from "../components/landing"
 import About from "../components/about"
+import { breakpoints } from "../styles/breakpoints"
 
 const IndexPage = () => {
   const { jobs, projects } = useStaticQuery(graphql`
@@ -54,6 +55,8 @@ const IndexPage = () => {
     }
   `)
 
+  const size = React.useContext(ResponsiveContext);
+
   return (
     <>
       <link
@@ -61,18 +64,22 @@ const IndexPage = () => {
         rel="stylesheet"
       />
       <link rel="icon" type="image/png" href="/src/images/favicon.png" />
-      <Grommet theme={theme}>
-        <Box key="fadeIn" animation={{ type: "fadeIn", duration: 4000 }}>
-          <Layout>
-            {/* <SEO title="Home" /> */}
-            <Landing />
-            <About />
-            <Tools />
-            <Jobs jobs={jobs.edges} />
-            {/* <Projects projects={projects.edges} /> */}
-            <Contact />
-          </Layout>
-        </Box>
+      <Grommet theme={breakpoints}>
+        <ResponsiveContext.Consumer>
+          {size => (
+            <Box key="fadeIn" animation={{ type: "fadeIn", duration: 4000 }}>
+              <Layout>
+                {/* <SEO title="Home" /> */}
+                <Landing />
+                <About />
+                <Tools />
+                <Jobs jobs={jobs.edges} />
+                {/* <Projects projects={projects.edges} /> */}
+                <Contact />
+              </Layout>
+            </Box>
+          )}
+        </ResponsiveContext.Consumer>
       </Grommet>
     </>
   )

@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Heading, Tab, Tabs, Anchor, Text, Paragraph } from "grommet"
+import { Box, Heading, Tab, Tabs, Anchor, Text, Paragraph, ResponsiveContext } from "grommet"
 import theme from "../styles/theme"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import styled from "styled-components"
@@ -33,36 +33,43 @@ const JobDescription = styled(Paragraph)`
 const Jobs = ({ jobs }) => {
   const reversedJobs = jobs.reverse()
 
+  const size = React.useContext(ResponsiveContext);
+  const sectionPaddingBottom = size === "xsmall" || size === "small" ? "100px" : "200px"
+
   return (
     <section id="jobs">
-      <Box pad={{ bottom: "200px" }}>
-        <Heading>Where I've Worked</Heading>
-        <Tabs justify="start" alignControls="start">
-          {reversedJobs.map(j => (
-            <Tab title={j.node.company}>
-              <Box
-                direction="row"
-                fill
-                pad={{ vertical: "large", left: "12px" }}
-                align="left"
-                justify="between"
-              >
-                <Text weight="bold">
-                  {j.node.position} @
-                  <Anchor href={j.node.website}>{j.node.company}</Anchor>
-                </Text>
-                <Text weight="bold">
-                  {getDate(j.node.startDate)} -{" "}
-                  {j.node.endDate ? getDate(j.node.endDate) : "Present"}
-                </Text>
-              </Box>
-              <JobDescription>
-                {documentToReactComponents(j.node.description.json)}
-              </JobDescription>
-            </Tab>
-          ))}
-        </Tabs>
-      </Box>
+      <ResponsiveContext.Consumer>
+        {size =>
+          <Box pad={{ bottom: sectionPaddingBottom }}>
+            <Heading>Where I've Worked</Heading>
+            <Tabs justify="start" alignControls="start">
+              {reversedJobs.map(j => (
+                <Tab title={j.node.company}>
+                  <Box
+                    direction="row"
+                    fill
+                    pad={{ vertical: "large", left: "12px" }}
+                    align="left"
+                    justify="between"
+                  >
+                    <Text weight="bold">
+                      {j.node.position} @
+                      <Anchor href={j.node.website}>{j.node.company}</Anchor>
+                    </Text>
+                    <Text weight="bold">
+                      {getDate(j.node.startDate)} -{" "}
+                      {j.node.endDate ? getDate(j.node.endDate) : "Present"}
+                    </Text>
+                  </Box>
+                  <JobDescription>
+                    {documentToReactComponents(j.node.description.json)}
+                  </JobDescription>
+                </Tab>
+              ))}
+            </Tabs>
+          </Box>
+        }
+      </ResponsiveContext.Consumer>
     </section>
   )
 }

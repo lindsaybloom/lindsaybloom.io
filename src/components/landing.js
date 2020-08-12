@@ -1,5 +1,5 @@
 import React from "react"
-import { Box, Heading, Text, Paragraph, Avatar } from "grommet"
+import { Box, Heading, Text, Paragraph, Avatar, ResponsiveContext } from "grommet"
 import theme from "../styles/theme"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
@@ -27,29 +27,29 @@ const ImageStyle = {
 
 const ImageWrapper = styled(Box)`
   position: absolute;
-  bottom: -50%;
-  right: 10%;
+  bottom: ${props => props.bottom};
+  right: 0%;
 `
 
 const StyledReact = styled(Reactjs)`
-  height: 100px;
-  width: 100px;
+  height: ${props => props.height};
+  width: ${props => props.width};
 `
 const StyledJs = styled(Js)`
-  height: 100px;
-  width: 100px;
+  height: ${props => props.height};
+  width: ${props => props.width};
   & g {
     stroke: black !important;
   }
 `
 const StyledCart = styled(Cart)`
-  height: 100px;
-  width: 100px;
+  height: ${props => props.height};
+  width: ${props => props.width};
 `
 
 const StyledCreditCard = styled(CreditCard)`
-  height: 100px;
-  width: 100px;
+  height: ${props => props.height};
+  width: ${props => props.width};
 `
 
 const Landing = props => {
@@ -84,40 +84,54 @@ const Landing = props => {
     }
   `)
 
+  const size = React.useContext(ResponsiveContext);
+  const sectionPaddingTop = size === "xsmall" || size === "small" ? "0" : "100px"
+  const sectionPaddingBottom = size === "xsmall" || size === "small" ? "100px" : "300px"
+  const flexDirection = size === "xsmall" || size === "small" ? "column" : "row"
+  const paragraphWidth = size === "xsmall" || size === "small" ? "100%" : "60%"
+  const bottom = size === "xsmall" || size === "small" ? "55%" : "-50%"
+  const descriptionPadding = size === "xsmall" || size === "small" ? "300px" : "0"
+  const iconHeight = size === "xsmall" || size === "small" ? "50px" : "100px"
+  const iconWidth = size === "xsmall" || size === "small" ? "50px" : "100px"
+
   return (
     <section id="landing">
-      <Box pad={{ bottom: "300px", top: "100px" }}>
-        <Box direction="row" align="baseline" justify="start">
-          <Paragraph>Hey, I'm</Paragraph>
-          <Heading margin={{ left: "small", bottom: "small" }}>
-            Lindsay Bloom
-          </Heading>
-        </Box>
-        <Box>
-          <Heading className="tagline" margin={{ top: "none" }}>
-            {tagline.text}
-          </Heading>
-        </Box>
-        <Container direction="row" justify="between">
-          <Box direction="row" width="60%">
-            {documentToReactComponents(description.text.json)}
+      <ResponsiveContext>
+        {size => (
+          <Box pad={{ bottom: sectionPaddingBottom, top: sectionPaddingTop }}>
+            <Box direction={flexDirection} align="baseline" justify="start">
+              <Paragraph>Hey, I'm</Paragraph>
+              <Heading margin={{ left: "small", bottom: "small" }}>
+                Lindsay Bloom
+              </Heading>
+            </Box>
+            <Box>
+              <Heading className="tagline" margin={{ top: "none" }}>
+                {tagline.text}
+              </Heading>
+            </Box>
+            <Container direction="row" justify="between">
+              <Box direction="row" width={paragraphWidth} pad={{top: descriptionPadding}}>
+                {documentToReactComponents(description.text.json)}
+              </Box>
+              <ImageWrapper direction="row" margin={{ right: "xlarge" }} bottom={bottom}>
+                <Image fluid={image.file.fluid} imgStyle={ImageStyle} />
+              </ImageWrapper>
+            </Container>
+            <Box
+              direction="row"
+              justify="evenly"
+              margin={{ top: "large" }}
+              width={paragraphWidth}
+            >
+              <StyledReact height={iconHeight} width={iconWidth} />
+              <StyledJs height={iconHeight} width={iconWidth} />
+              <StyledCart height={iconHeight} width={iconWidth} />
+              <StyledCreditCard height={iconHeight} width={iconWidth} />
+            </Box>
           </Box>
-          <ImageWrapper direction="row" margin={{ right: "xlarge" }}>
-            <Image fluid={image.file.fluid} imgStyle={ImageStyle} />
-          </ImageWrapper>
-        </Container>
-        <Box
-          direction="row"
-          justify="evenly"
-          margin={{ top: "large" }}
-          width="60%"
-        >
-          <StyledReact />
-          <StyledJs />
-          <StyledCart />
-          <StyledCreditCard />
-        </Box>
-      </Box>
+        )}
+      </ResponsiveContext>
     </section>
   )
 }
