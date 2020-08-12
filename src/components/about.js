@@ -42,6 +42,12 @@ const About = props => {
             srcWebp
             srcSetWebp
           }
+          fixed {
+            base64
+            tracedSVG
+            srcWebp
+            srcSetWebp
+          }
         }
       }
     }
@@ -81,7 +87,7 @@ const About = props => {
                   background="dark-2"
                 />
                 <Stack anchor="center">
-                  <Image fluid={photo.file.fluid} imgStyle={ImageStyle} height={imgHeight} width={imgWidth}/>
+                  <Image fixed={photo.file.fixed} imgStyle={ImageStyle} height={imgHeight} width={imgWidth}/>
                   <Overlay
                     background="accent-2"
                     height={imgHeight}

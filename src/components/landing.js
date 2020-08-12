@@ -115,7 +115,7 @@ const Landing = props => {
                 {documentToReactComponents(description.text.json)}
               </Box>
               <ImageWrapper direction="row" margin={{ right: "xlarge" }} bottom={bottom}>
-                <Image fluid={image.file.fluid} imgStyle={ImageStyle} />
+                <Image fixed={image.file.fixed} imgStyle={ImageStyle} />
               </ImageWrapper>
             </Container>
             <Box
