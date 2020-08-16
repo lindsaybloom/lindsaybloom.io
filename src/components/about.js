@@ -7,7 +7,6 @@ import * as contentful from "contentful"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Img from "gatsby-image"
 import { FaCanadianMapleLeaf } from "react-icons/fa"
-import { Coffee } from "grommet-icons"
 
 const Image = styled(Img)`
   img {
@@ -36,17 +35,15 @@ const About = props => {
       photo: contentfulPhoto(contentfulid: { eq: "who-am-i-photo" }) {
         id
         file {
-          fluid {
-            base64
-            tracedSVG
-            srcWebp
-            srcSetWebp
-          }
           fixed {
             base64
             tracedSVG
+            aspectRatio
             srcWebp
             srcSetWebp
+          }
+          fluid {
+            ...GatsbyContentfulFluid_withWebp
           }
         }
       }
@@ -68,6 +65,7 @@ const About = props => {
   const imgWidth = size === "xsmall" || size === "small" ? "200px" : "300px"
   const flexDirection = size === "xsmall" || size === "small" ? "column" : "row"
   const paragraphWidth = size === "xsmall" || size === "small" ? "100%" : "60%"
+  const photoMargin = size === "xsmall" || size === "small" ? "large" : "medium"
 
   return (
     <section id="about">
@@ -83,11 +81,11 @@ const About = props => {
                 <Underlay
                   height={imgHeight}
                   width={imgWidth}
-                  margin="large"
+                  margin={photoMargin}
                   background="dark-2"
                 />
                 <Stack anchor="center">
-                  <Image fixed={photo.file.fixed} imgStyle={ImageStyle} height={imgHeight} width={imgWidth}/>
+                  <Image fluid={photo.file.fluid} imgStyle={ImageStyle} height={imgHeight} width={imgWidth}/>
                   <Overlay
                     background="accent-2"
                     height={imgHeight}

@@ -74,10 +74,7 @@ const Landing = props => {
             srcSetWebp
           }
           fluid {
-            base64
-            tracedSVG
-            srcWebp
-            srcSetWebp
+            ...GatsbyContentfulFluid_withWebp
           }
         }
       }
@@ -115,7 +112,7 @@ const Landing = props => {
                 {documentToReactComponents(description.text.json)}
               </Box>
               <ImageWrapper direction="row" margin={{ right: "xlarge" }} bottom={bottom}>
-                <Image fixed={image.file.fixed} imgStyle={ImageStyle} />
+                <Image fluid={image.file.fluid} imgStyle={ImageStyle} />
               </ImageWrapper>
             </Container>
             <Box

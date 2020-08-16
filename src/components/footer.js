@@ -9,6 +9,7 @@ const Footer = ({ background }) => {
   const flexDirection = size === "xsmall" || size === "small" ? "column" : "row"
   const textAlign = size === "xsmall" || size === "small" ? "center" : "left"
   const bottomMarginText = size === "xsmall" || size === "small" ? "medium" : "none"
+  const navWidth = size === "xsmall" || size === "small" ? "100%" : "15%"
   
   return(
     <ResponsiveContext.Consumer>
@@ -16,7 +17,7 @@ const Footer = ({ background }) => {
         <GrommetFooter background={background} margin={{ top: "xlarge" }}>
           <Box direction={flexDirection} justify="between" width="100%">
             <Text textAlign={textAlign} margin={{bottom: bottomMarginText}}>Designed &amp; built by Lindsay Bloom </Text>
-            <Box direction="row" justify="between" width="10%">
+            <Box direction="row" justify="between" width={navWidth}>
               <Anchor href="https://www.instagram.com/lindsaybloom/">
                 <Instagram color="accent-2" />
               </Anchor>
