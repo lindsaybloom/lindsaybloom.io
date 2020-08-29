@@ -22,7 +22,7 @@ const Nav = () => {
   return (
     <Header background="dark-1" pad="medium">
       <Box direction="row" align="center" gap="small" width="60px" height="0">
-        <Logo />
+        <Anchor height="60px" width="60px" href="https://lindsaybloom.io"><Logo height={60} width={60} /></Anchor>
       </Box>
       <ResponsiveContext.Consumer>
         {size =>
