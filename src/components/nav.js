@@ -3,19 +3,11 @@ import { Anchor, Box, Header, Nav as Navigation, Menu, ResponsiveContext } from 
 import { navLinks } from "../config"
 import Logo from "../components/logo"
 
-const getNavItems = () => {
-  let navItems = []
-  navLinks.map(({ url, name }, i) => navItems.push({ label: name, href: url }))
-}
-
-const getMenuItems = () => {
-  let navItems = []
-  navLinks.map(({ url, name }, i) => navItems.push({ label: name, onClick: () => {console.log(url)} }))
-}
-
 const Nav = () => {
-  const navItems = getNavItems()
-  const menuItems = getMenuItems()
+  let menuItems = []
+  navLinks.map(({ name, url }, i) => {
+    menuItems.push({ label: name, href: url })
+  })
   const size = React.useContext(ResponsiveContext);
   const isMenu = size === "xsmall" || size === "small"
 
