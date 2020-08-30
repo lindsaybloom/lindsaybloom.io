@@ -9,6 +9,7 @@ import Jobs from "../components/jobs"
 import Projects from "../components/projects"
 import Contact from "../components/contact"
 import Tools from "../components/tools"
+import Head from "../components/head"
 import { Grommet, Box, ResponsiveContext } from "grommet"
 // import SEO from "../components/seo"
 
@@ -17,8 +18,14 @@ import About from "../components/about"
 import { breakpoints } from "../styles/breakpoints"
 
 const IndexPage = () => {
-  const { jobs, projects } = useStaticQuery(graphql`
+  const { jobs, projects, metadata } = useStaticQuery(graphql`
     {
+      metadata: contentfulMetadata(title: {eq: "Lindsay Bloom"}) {
+        description {
+          description
+        }
+        title
+      }
       jobs: allContentfulJob(sort: { fields: startDate, order: ASC }) {
         edges {
           node {
@@ -65,6 +72,7 @@ const IndexPage = () => {
         rel="stylesheet"
       />
       <link rel="icon" type="image/png" href="/src/images/favicon.png" />
+      <Head metadata={metadata} />
       <Grommet theme={breakpoints}>
         <ResponsiveContext.Consumer>
           {size => (

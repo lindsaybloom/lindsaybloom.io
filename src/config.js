@@ -3,7 +3,7 @@ module.exports = {
   siteDescription: "Lindsay Bloom is a software engineer based in Boston, MA.",
   siteKeywords:
     "Lindsay Bloom, Linsday, Bloom, lbloom97, lindsaybloom, software engineer, front-end engineer, web developer, javascript, tufts",
-  siteUrl: "https://lindsaybloom.github.io",
+  siteUrl: "https://lindsaybloom.io",
   siteLanguage: "en_US",
   googleAnalyticsID: "",
   googleVerification: "",
