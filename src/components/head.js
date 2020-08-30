@@ -3,7 +3,7 @@ import Helmet from "react-helmet"
 import config from "../config"
 import favicon from "../images/favicon.ico"
 import theme from "../styles/theme"
-import logoIcon from "../images/LB_logo.png"
+import logoIcon from "../images/LB_Logo.png"
 
 const Head = ({ metadata }) => {
   console.log(metadata)
