@@ -1,5 +1,5 @@
-const dotenv = require("dotenv")
-const config = require("./src/config")
+const dotenv = require('dotenv');
+const config = require('./src/config');
 
 module.exports = {
   siteMetadata: {
@@ -8,38 +8,34 @@ module.exports = {
     description: config.siteDescription,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: "Lindsay Bloom",
-        short_name: "LindsayBloom",
-        start_url: "/",
-        background_color: "black",
-        theme_color: "gray",
-        display: "minimal-ui",
-        // icon: "/assets/LB_LOGO.png",
+        name: 'Lindsay Bloom',
+        short_name: 'LindsayBloom',
+        start_url: '/',
+        background_color: 'black',
+        theme_color: 'gray',
+        display: 'minimal-ui',
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
     {
-      resolve: "gatsby-source-contentful",
+      resolve: 'gatsby-source-contentful',
       options: {
-        spaceId: "sdgc3wpiox9z",
-        accessToken: "VygsV8cfARSa5qilfeNy8ciVhCmx2Cp4R5PP0vMNWrc", //process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: 'sdgc3wpiox9z',
+        accessToken: 'VygsV8cfARSa5qilfeNy8ciVhCmx2Cp4R5PP0vMNWrc', // process.env.CONTENTFUL_ACCESS_TOKEN,
         host: process.env.CONTENTFUL_HOST,
       },
     },
   ],
-}
+};
