@@ -48,6 +48,8 @@ const Contact = (props) => {
               onSubmit={(event) => {
                 alert('Your submission has been received. Thank you for reaching out!');
               }}
+              method="POST"
+              data-netlify="true"
             >
               <Box direction="row">
                 <FormField
