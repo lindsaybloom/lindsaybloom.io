@@ -43,7 +43,12 @@ const Contact = (props) => {
 
             <Text margin={{ top: 'large', bottom: 'large' }}>Or, fill out this form!</Text>
 
-            <Form onSubmit={({ value }) => {}}>
+            <Form
+              id="contact-form"
+              onSubmit={(event) => {
+                alert('Your submission has been received. Thank you for reaching out!');
+              }}
+            >
               <Box direction="row">
                 <FormField
                   name="firstname"

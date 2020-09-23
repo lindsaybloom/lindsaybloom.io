@@ -16,5 +16,6 @@ module.exports = {
     'no-unused-vars': 'off',
     'react/forbid-prop-types': 'off',
     'react/require-default-props': 'off',
+    'no-alert': 'off',
   },
 };
