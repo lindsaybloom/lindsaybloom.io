@@ -45,7 +45,8 @@ const Contact = (props) => {
 
             <Form
               id="contact-form"
-              onSubmit={(event) => {
+              onSubmit={(e) => {
+                e.target.reset();
                 alert('Your submission has been received. Thank you for reaching out!');
               }}
               method="POST"
