@@ -46,6 +46,7 @@ const Contact = (props) => {
     })
       .then(() => alert('Your submission has been received. Thank you for reaching out!'))
       .catch((error) => alert(error));
+    e.target.reset();
   };
 
   return (
@@ -69,15 +70,7 @@ const Contact = (props) => {
 
             <Text margin={{ top: 'large', bottom: 'large' }}>Or, fill out this form!</Text>
 
-            <Form
-              id="contact-form"
-              onSubmit={(e) => {
-                e.target.reset();
-                alert('Your submission has been received. Thank you for reaching out!');
-              }}
-              method="post"
-              data-netlify="true"
-            >
+            <Form id="contact-form" onSubmit={handleSubmit} method="post" data-netlify="true">
               <input type="hidden" name="form-name" value="contact-form" />
               <Box direction="row">
                 <FormField
