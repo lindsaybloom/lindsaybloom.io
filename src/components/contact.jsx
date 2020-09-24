@@ -52,6 +52,8 @@ const Contact = (props) => {
               method="POST"
               data-netlify="true"
             >
+              <input type="hidden" name="form-name" value="contact" />
+
               <Box direction="row">
                 <FormField
                   name="firstname"
