@@ -18,9 +18,35 @@ const StyledBox = styled(Box)`
   border: 2px solid;
 `;
 
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+    .join('&');
+}
+
 const Contact = (props) => {
   const size = React.useContext(ResponsiveContext);
   const boxMarginBottom = size === 'xsmall' || size === 'small' ? 'xlarge' : '0';
+  const [state, setState] = React.useState({});
+
+  const handleChange = (e) => {
+    setState({ ...state, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': form.getAttribute('name'),
+        ...state,
+      }),
+    })
+      .then(() => alert('Your submission has been received. Thank you for reaching out!'))
+      .catch((error) => alert(error));
+  };
 
   return (
     <section id="contact">
@@ -49,7 +75,7 @@ const Contact = (props) => {
                 e.target.reset();
                 alert('Your submission has been received. Thank you for reaching out!');
               }}
-              method="POST"
+              method="post"
               data-netlify="true"
             >
               <input type="hidden" name="form-name" value="contact-form" />
@@ -60,17 +86,17 @@ const Contact = (props) => {
                   label="First Name"
                   margin={{ right: 'large' }}
                 >
-                  <TextInput id="input-firstname" name="firstname" />
+                  <TextInput id="input-firstname" name="firstname" onChange={handleChange} />
                 </FormField>
                 <FormField name="lastname" htmlfor="input-lastname" label="Last Name">
-                  <TextInput id="input-lastname" name="lastname" />
+                  <TextInput id="input-lastname" name="lastname" onChange={handleChange} />
                 </FormField>
               </Box>
               <FormField name="email" htmlfor="input-email" label="Email">
-                <TextInput id="input-email" name="email" />
+                <TextInput id="input-email" name="email" onChange={handleChange} />
               </FormField>
               <FormField name="message" htmlfor="input-message" label="Message">
-                <TextArea id="input-message" name="message" />
+                <TextArea id="input-message" name="message" onChange={handleChange} />
               </FormField>
               <Box margin={{ top: 'large' }} direction="row" gap="medium">
                 <Button type="submit" primary label="Submit" />
