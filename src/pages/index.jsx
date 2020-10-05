@@ -1,4 +1,6 @@
 import React from 'react';
+import '../styles/globals.css';
+import '../styles/styles.css';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Grommet, Box, ResponsiveContext } from 'grommet';
 import Layout from '../components/layout';
@@ -7,8 +9,6 @@ import Projects from '../components/projects';
 import Contact from '../components/contact';
 import Tools from '../components/tools';
 import Head from '../components/head';
-import '../styles/globals.css';
-import '../styles/styles.css';
 // import SEO from "../components/seo"
 
 import Landing from '../components/landing';
