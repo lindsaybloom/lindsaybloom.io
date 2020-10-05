@@ -33,22 +33,6 @@ const Contact = (props) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': form.getAttribute('name'),
-        ...state,
-      }),
-    })
-      .then(() => alert('Your submission has been received. Thank you for reaching out!'))
-      .catch((error) => alert(error));
-    e.target.reset();
-  };
-
   return (
     <section id="contact">
       <ResponsiveContext.Consumer>
@@ -70,24 +54,21 @@ const Contact = (props) => {
 
             <Text margin={{ top: 'large', bottom: 'large' }}>Or, fill out this form!</Text>
 
-            <Form id="contact-form" onSubmit={handleSubmit} method="post" data-netlify="true">
+            <Form id="contact-form" name="contact-form" method="POST" data-netlify="true">
               <input type="hidden" name="form-name" value="contact-form" />
               <Box direction="row">
                 <FormField
-                  name="firstname"
-                  htmlfor="input-firstname"
-                  label="First Name"
+                  name="name"
+                  htmlfor="input-name"
+                  label="Name"
                   margin={{ right: 'large' }}
                 >
-                  <TextInput id="input-firstname" name="firstname" onChange={handleChange} />
+                  <TextInput id="input-name" name="name" onChange={handleChange} />
                 </FormField>
-                <FormField name="lastname" htmlfor="input-lastname" label="Last Name">
-                  <TextInput id="input-lastname" name="lastname" onChange={handleChange} />
+                <FormField name="email" htmlfor="input-email" label="Email">
+                  <TextInput id="input-email" name="email" onChange={handleChange} />
                 </FormField>
               </Box>
-              <FormField name="email" htmlfor="input-email" label="Email">
-                <TextInput id="input-email" name="email" onChange={handleChange} />
-              </FormField>
               <FormField name="message" htmlfor="input-message" label="Message">
                 <TextArea id="input-message" name="message" onChange={handleChange} />
               </FormField>
