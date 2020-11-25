@@ -3,7 +3,7 @@ import {
   Anchor, Box, Header, Nav as Navigation, Menu, ResponsiveContext,
 } from 'grommet';
 import { navLinks } from '../config';
-import Logo from './logo';
+import LogoV2 from './logoV2';
 
 const Nav = () => {
   const menuItems = [];
@@ -15,7 +15,7 @@ const Nav = () => {
     <Header background="dark-1" pad="medium">
       <Box direction="row" align="center" gap="small" width="60px" height="0">
         <Anchor height="60px" width="60px" href="https://lindsaybloom.io">
-          <Logo height={60} width={60} />
+          <LogoV2 height={60} width={100} />
         </Anchor>
       </Box>
       <ResponsiveContext.Consumer>
