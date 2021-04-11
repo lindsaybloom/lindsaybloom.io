@@ -1,33 +1,19 @@
-import React from 'react';
-import '../styles/globals.css';
-import '../styles/styles.css';
-import { useStaticQuery, graphql } from 'gatsby';
-import { Grommet, Box, ResponsiveContext } from 'grommet';
-import Layout from '../components/layout';
-import Jobs from '../components/jobs';
-import Projects from '../components/projects';
-import Contact from '../components/contact';
-import Tools from '../components/tools';
-import Head from '../components/head';
-// import SEO from "../components/seo"
-
-import Landing from '../components/landing';
-import About from '../components/about';
-import { breakpoints } from '../styles/breakpoints';
+import React from "react"
+import "../styles/globals.css"
+import "../styles/styles.css"
+import { useStaticQuery, graphql } from "gatsby"
+import { Box, ResponsiveContext } from "grommet"
+import Layout from "../components/layout"
+import Jobs from "../components/jobs"
+import Projects from "../components/projects"
+import Contact from "../components/contact"
+import Tools from "../components/tools"
+import Landing from "../components/landing"
+import About from "../components/about"
 
 const IndexPage = () => {
-  const { jobs, projects, metadata } = useStaticQuery(graphql`
+  const { jobs, projects } = useStaticQuery(graphql`
     {
-      metadata: contentfulMetadata(contentfulid: { eq: "lindsaybloom.io" }) {
-        title
-        contentfulid
-        author
-        language
-        description {
-          description
-        }
-      }
-
       jobs: allContentfulJob(sort: { fields: startDate, order: ASC }) {
         edges {
           node {
@@ -63,37 +49,23 @@ const IndexPage = () => {
         }
       }
     }
-  `);
-
-  const size = React.useContext(ResponsiveContext);
+  `)
 
   return (
     <>
-      <link
-        href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-        rel="stylesheet"
-      />
-      <link rel="icon" type="image/png" href="/src/images/favicon.png" />
-      <Head metadata={metadata} />
-      <Grommet theme={breakpoints}>
-        <ResponsiveContext.Consumer>
-          {(size) => (
-            <Box key="fadeIn" animation={{ type: 'fadeIn', duration: 4000 }}>
-              <Layout>
-                {/* <SEO title="Home" /> */}
-                <Landing />
-                <About />
-                <Tools />
-                <Jobs jobs={jobs.edges} />
-                {/* <Projects projects={projects.edges} /> */}
-                <Contact />
-              </Layout>
-            </Box>
-          )}
-        </ResponsiveContext.Consumer>
-      </Grommet>
+      <Box key="fadeIn" animation={{ type: "fadeIn", duration: 4000 }}>
+        <Layout>
+          {/* <SEO title="Home" /> */}
+          <Landing />
+          <About />
+          <Tools />
+          <Jobs jobs={jobs.edges} />
+          {/* <Projects projects={projects.edges} /> */}
+          <Contact />
+        </Layout>
+      </Box>
     </>
-  );
-};
+  )
+}
 
-export default IndexPage;
+export default IndexPage
