@@ -19,6 +19,21 @@ const Blog = () => {
             description {
               description
             }
+            date(formatString: "MM/DD/YYYY")
+            hero {
+              fluid {
+                ...GatsbyContentfulFluid_withWebp
+              }
+              file {
+                url
+                details {
+                  image {
+                    height
+                    width
+                  }
+                }
+              }
+            }
           }
         }
       }

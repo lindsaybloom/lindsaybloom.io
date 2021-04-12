@@ -20,15 +20,17 @@ export type ContentfulImageFile = {
     srcSetWebp: string
     sizes: any
   }
-  fluid: {
-    base64: string
-    aspectRatio: string
-    src: string
-    srcSet: string
-    srcWebp: string
-    srcSetWebp: string
-    sizes: any
-  }
+  fluid: Fluid
+}
+
+export type Fluid = {
+  base64: string
+  aspectRatio: number
+  src: string
+  srcSet: string
+  srcWebp: string
+  srcSetWebp: string
+  sizes: any
 }
 
 export type ContentfulMetadata = {
@@ -76,5 +78,18 @@ export type ContentfulBlogPostBySlug = {
   }
   body: {
     json: Document
+  }
+  date: string
+  hero: {
+    fluid: Fluid
+    file: {
+      url: string
+      details: {
+        image: {
+          height: number
+          width: number
+        }
+      }
+    }
   }
 }

@@ -4,6 +4,7 @@ import Post from "../components/post"
 import { useStaticQuery, graphql } from "gatsby"
 import { Box, ResponsiveContext } from "grommet"
 import { ContentfulBlogPostBySlug } from "../types/contentful"
+import config from "../config"
 
 type BlogPostProps = {
   data: {
@@ -33,9 +34,61 @@ type BlogPostProps = {
   uri: string
 }
 
+type Meta = Array<{ name?: string; property?: string; content?: string }>
+
 const BlogPost = (props: BlogPostProps) => {
   const { data } = props
   const { contentfulBlogPost: blogPost } = data
+  const meta: Meta = [
+    {
+      name: `description`,
+      content: blogPost.description.description,
+    },
+    {
+      property: `og:title`,
+      content: blogPost.title,
+    },
+    {
+      property: `og:description`,
+      content: blogPost.description.description,
+    },
+    {
+      property: "og:image",
+      content: blogPost.hero.file.url,
+    },
+    {
+      property: "og:image:width",
+      content: blogPost.hero.file.details.image.width.toString(),
+    },
+    {
+      property: "og:image:height",
+      content: blogPost.hero.file.details.image.height.toString(),
+    },
+    {
+      property: `og:type`,
+      content: `website`,
+    },
+    {
+      name: `twitter:card`,
+      content: `summary_large_image`,
+    },
+    {
+      name: `twitter:creator`,
+      content: config.twitterHandle,
+    },
+    {
+      name: `twitter:title`,
+      content: blogPost.title,
+    },
+    {
+      name: `twitter:description`,
+      content: blogPost.description.description,
+    },
+    {
+      property: "twitter:image",
+      content: blogPost.hero.file.url,
+    },
+  ]
 
   return (
     <>
@@ -59,6 +112,21 @@ export const pageQuery = graphql`
       }
       body {
         json
+      }
+      date(formatString: "MM/DD/YYYY")
+      hero {
+        fluid {
+          ...GatsbyContentfulFluid_withWebp
+        }
+        file {
+          url
+          details {
+            image {
+              height
+              width
+            }
+          }
+        }
       }
     }
   }
