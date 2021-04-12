@@ -1,20 +1,7 @@
 import React from "react"
-import {
-  Box,
-  Heading,
-  Tab,
-  Tabs,
-  Anchor,
-  Text,
-  ResponsiveContext,
-} from "grommet"
+import { Heading, ResponsiveContext } from "grommet"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
-import styled from "styled-components"
-import {
-  ContentfulJob,
-  ContentfulBlogPost,
-  ContentfulBlogPostBySlug,
-} from "../types/contentful"
+import { ContentfulBlogPostBySlug } from "../types/contentful"
 
 type PostProps = {
   post: ContentfulBlogPostBySlug
@@ -22,8 +9,6 @@ type PostProps = {
 
 const Post = ({ post }: PostProps) => {
   const size = React.useContext(ResponsiveContext)
-  const sectionPaddingBottom =
-    size === "xsmall" || size === "small" ? "100px" : "200px"
 
   return (
     <article id="post">

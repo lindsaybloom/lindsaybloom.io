@@ -9,6 +9,12 @@ import {
 } from "grommet"
 import { navLinks } from "../config"
 import LogoV2 from "./logoV2"
+import { AnchorLink } from "gatsby-plugin-anchor-links"
+import styled from "styled-components"
+
+const MenuItem = styled(AnchorLink)`
+  text-decoration: none;
+`
 
 const Nav = () => {
   const menuItems = []
@@ -30,7 +36,9 @@ const Nav = () => {
           ) : (
             <Navigation direction="row">
               {navLinks.map(item => (
-                <Anchor href={item.url} label={item.name} key={item.name} />
+                <MenuItem to={item.url} key={item.name}>
+                  {item.name}
+                </MenuItem>
               ))}
             </Navigation>
           )

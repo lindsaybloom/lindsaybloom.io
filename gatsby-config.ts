@@ -50,5 +50,11 @@ module.exports = {
         pathToConfigModule: "src/utils/typography",
       },
     },
+    {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        offset: -100,
+      },
+    },
   ],
 }
