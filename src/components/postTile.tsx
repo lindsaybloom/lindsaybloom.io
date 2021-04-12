@@ -47,7 +47,7 @@ const PostTile = ({ post }: PostTileProps) => {
       {size => (
         <TileWrapper direction={wrapperFlex}>
           <Image fluid={post.node.hero.fluid} />
-          <StyledAnchor href={`/${post.node.slug}`}>
+          <StyledAnchor href={`/blog/${post.node.slug}`}>
             <Heading margin={{ bottom: "xsmall" }}>{post?.node?.title}</Heading>
             <Text>{post?.node?.description?.description}</Text>
           </StyledAnchor>
