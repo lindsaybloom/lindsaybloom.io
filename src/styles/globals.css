@@ -3,8 +3,8 @@
   background-color: #121212;
 }
 
-body, 
-html, 
-#___gatsby { 
-  height:100% 
+body,
+html,
+#___gatsby {
+  height: 100vh;
 }
