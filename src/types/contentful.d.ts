@@ -80,15 +80,17 @@ export type ContentfulBlogPostBySlug = {
     json: Document
   }
   date: string
-  hero: {
-    fluid: Fluid
-    file: {
-      url: string
-      details: {
-        image: {
-          height: number
-          width: number
-        }
+  hero: ContentfulHero
+}
+
+export type ContentfulHero = {
+  fluid: Fluid
+  file: {
+    url: string
+    details: {
+      image: {
+        height: number
+        width: number
       }
     }
   }
