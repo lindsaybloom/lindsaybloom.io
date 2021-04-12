@@ -1,12 +1,12 @@
 import React from "react"
 import Helmet from "react-helmet"
-import PropTypes from "prop-types"
 import config from "../config"
 import favicon from "../images/favicon.ico"
 import theme from "../styles/theme"
 import logoIcon from "../images/LB_Logo.png"
+import { ContentfulMetadata } from "../types/contentful"
 
-const Head = ({ metadata }) => (
+const Head = ({ metadata }: ContentfulMetadata) => (
   <Helmet>
     <html lang="en" />
     <title itemProp="name" lang="en">
@@ -52,9 +52,5 @@ const Head = ({ metadata }) => (
     <meta name="theme-color" content={theme.global.colors.brand} />
   </Helmet>
 )
-
-Head.propTypes = {
-  metadata: PropTypes.object.isRequired,
-}
 
 export default Head

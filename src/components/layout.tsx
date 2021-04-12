@@ -33,7 +33,7 @@ const Layout = ({ children }) => {
       />
       <link rel="icon" type="image/png" href="/src/images/favicon.png" />
       <Head metadata={metadata} />
-      <Grommet theme={breakpoints}>
+      <Grommet theme={breakpoints as any}>
         <ResponsiveContext.Consumer>
           {size => (
             <>
@@ -54,10 +54,6 @@ const Layout = ({ children }) => {
       </Grommet>
     </>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout

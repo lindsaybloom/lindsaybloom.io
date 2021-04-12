@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react"
 
-const Logo = (props) => (
+const Logo = props => (
   /* eslint-disable */
   <svg width={200} height={200} viewBox="0 0 200 200" {...props}>
     <path
@@ -9,7 +9,12 @@ const Logo = (props) => (
       fill="#ff99eb"
       fillRule="evenodd"
     />
-    <path fill="none" stroke="#ff99eb" strokeWidth={2} d="M11.938 43.469h176.063v113.062H11.938z" />
+    <path
+      fill="none"
+      stroke="#ff99eb"
+      strokeWidth={2}
+      d="M11.938 43.469h176.063v113.062H11.938z"
+    />
   </svg>
 )
 
