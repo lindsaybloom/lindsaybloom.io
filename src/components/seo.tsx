@@ -19,7 +19,7 @@ function SEO(props: SEOProps) {
     hero,
     meta: customMeta = [],
   } = props
-  const imageShare = hero.file.url
+  const imageShare = hero.file.url.substring(2)
   const pageTitle = title
     ? `${title} | ${config.siteTitle}`
     : `${config.siteTitle} | ${description}`
