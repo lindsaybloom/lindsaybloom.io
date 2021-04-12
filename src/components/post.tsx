@@ -1,5 +1,5 @@
 import React from "react"
-import { Heading, ResponsiveContext, Box } from "grommet"
+import { Heading, ResponsiveContext, Text } from "grommet"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { ContentfulBlogPostBySlug } from "../types/contentful"
 import Image from "gatsby-image"
@@ -18,7 +18,8 @@ const Post = ({ post }: PostProps) => {
         {size => (
           <>
             <Image fluid={post.hero.fluid} />
-            <Heading>{post.title}</Heading>
+            <Text>{post.date}</Text>
+            <Heading margin={{ top: "medium" }}>{post.title}</Heading>
             {documentToReactComponents(post.body.json)}
           </>
         )}
