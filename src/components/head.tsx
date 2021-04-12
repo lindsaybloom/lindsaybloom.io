@@ -33,7 +33,7 @@ const Head = ({ metadata }: ContentfulMetadata) => (
     <meta property="og:locale" content={config.siteLanguage} />
     <meta itemProp="name" content={metadata.title} />
     <meta itemProp="description" content={metadata.description.description} />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content={config.siteUrl} />
     <meta name="twitter:site" content={config.twitterHandle} />
     <meta name="twitter:creator" content={config.twitterHandle} />
