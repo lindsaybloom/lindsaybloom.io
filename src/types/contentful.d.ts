@@ -46,7 +46,7 @@ export type ContentfulMetadata = {
 export type ContentfulJob = {
   node: {
     description: {
-      json: Document
+      description: Document
     }
     company: string
     position: string
@@ -61,5 +61,20 @@ export type ContentfulProject = {
     media: ContentfulImageFile
     name: string
     url: string
+  }
+}
+
+export type ContentfulBlogPost = {
+  node: ContentfulBlogPostBySlug
+}
+
+export type ContentfulBlogPostBySlug = {
+  slug: string
+  title: string
+  description: {
+    description: string
+  }
+  body: {
+    json: Document
   }
 }
