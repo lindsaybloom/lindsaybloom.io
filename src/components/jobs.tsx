@@ -75,7 +75,7 @@ const Jobs = ({ jobs }: JobsProps) => {
                     </Text>
                   </Box>
                   <JobDescription>
-                    {documentToReactComponents(j.node.description.description)}
+                    {documentToReactComponents(j.node.description.json)}
                   </JobDescription>
                 </Tab>
               ))}

@@ -48,7 +48,7 @@ export type ContentfulMetadata = {
 export type ContentfulJob = {
   node: {
     description: {
-      description: Document
+      json: Document
     }
     company: string
     position: string
