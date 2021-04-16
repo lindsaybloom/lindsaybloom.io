@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import PostTile from "../components/postTile"
 import { useStaticQuery, graphql } from "gatsby"
 import {
+  Layer,
   Heading,
   Box,
   FormField,
@@ -124,6 +125,19 @@ const Blog = () => {
               </Box>
             </form>
           </RoundBox>
+
+          <>
+            {open && (
+              <Layer position="center" onClickOutside={onClose} onEsc={onClose}>
+                <Box pad="medium" gap="small" width="medium">
+                  <Heading level={3} margin="none">
+                    Thanks for signing up! You'll receive an email when I
+                    release my next post.
+                  </Heading>
+                </Box>
+              </Layer>
+            )}
+          </>
 
           <Box direction="column" pad={{ vertical: "large" }}>
             {blogPosts.edges.map(post => (
