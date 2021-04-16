@@ -22,7 +22,7 @@ const Post = ({ post }: PostProps) => {
               title={post.title}
               description={post.description.description}
             />
-            <Image fluid={post.hero.fluid} />
+            {post.hero && <Image fluid={post.hero.fluid} />}
             <Text>{post.date}</Text>
             <Heading margin={{ top: "medium" }}>{post.title}</Heading>
             {documentToReactComponents(post.body.json)}

@@ -19,10 +19,11 @@ function SEO(props: SEOProps) {
     hero,
     meta: customMeta = [],
   } = props
-  const imageShare = hero.file.url.substring(2)
+  const imageShare = hero ? hero.file.url.substring(2) : ""
   const pageTitle = title
     ? `${title} | ${config.siteTitle}`
     : `${config.siteTitle} | ${description}`
+  const imageDetails = hero ? hero.file.details.image : null
 
   const meta: Meta = [
     {
@@ -43,11 +44,11 @@ function SEO(props: SEOProps) {
     },
     {
       property: "og:image:width",
-      content: hero.file.details.image.width?.toString(),
+      content: imageDetails ? imageDetails.width?.toString() : "",
     },
     {
       property: "og:image:height",
-      content: hero.file.details.image.height?.toString(),
+      content: imageDetails ? imageDetails.height?.toString() : "",
     },
     {
       property: `og:type`,

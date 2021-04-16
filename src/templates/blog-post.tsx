@@ -1,8 +1,8 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import Post from "../components/post"
-import { useStaticQuery, graphql } from "gatsby"
-import { Box, ResponsiveContext } from "grommet"
+import { graphql } from "gatsby"
+import { Box } from "grommet"
 import { ContentfulBlogPostBySlug } from "../types/contentful"
 import config from "../config"
 
@@ -54,15 +54,15 @@ const BlogPost = (props: BlogPostProps) => {
     },
     {
       property: "og:image",
-      content: blogPost.hero.file.url,
+      content: blogPost?.hero?.file?.url,
     },
     {
       property: "og:image:width",
-      content: blogPost.hero.file.details.image.width.toString(),
+      content: blogPost?.hero?.file?.details?.image?.width?.toString(),
     },
     {
       property: "og:image:height",
-      content: blogPost.hero.file.details.image.height.toString(),
+      content: blogPost?.hero?.file?.details?.image?.height?.toString(),
     },
     {
       property: `og:type`,
@@ -86,7 +86,7 @@ const BlogPost = (props: BlogPostProps) => {
     },
     {
       property: "twitter:image",
-      content: blogPost.hero.file.url,
+      content: blogPost?.hero?.file?.url,
     },
   ]
 

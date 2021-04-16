@@ -45,13 +45,29 @@ const PostTile = ({ post }: PostTileProps) => {
   return (
     <ResponsiveContext.Consumer>
       {size => (
-        <TileWrapper direction={wrapperFlex}>
-          <Image fluid={post.node.hero.fluid} />
-          <StyledAnchor href={`/blog/${post.node.slug}`}>
-            <Heading margin={{ bottom: "xsmall" }}>{post?.node?.title}</Heading>
-            <Text>{post?.node?.description?.description}</Text>
-          </StyledAnchor>
-        </TileWrapper>
+        <>
+          {post.node.hero ? (
+            <TileWrapper direction={wrapperFlex} margin={{ bottom: "large" }}>
+              <Image fluid={post.node.hero.fluid} />
+              <StyledAnchor href={`/blog/${post.node.slug}`}>
+                <Heading margin={{ bottom: "xsmall" }}>
+                  {post?.node?.title}
+                </Heading>
+                <Text>{post?.node?.description?.description}</Text>
+              </StyledAnchor>
+            </TileWrapper>
+          ) : (
+            <StyledAnchor
+              href={`/blog/${post.node.slug}`}
+              margin={{ bottom: "large" }}
+            >
+              <Heading margin={{ bottom: "xsmall" }}>
+                {post?.node?.title}
+              </Heading>
+              <Text>{post?.node?.description?.description}</Text>
+            </StyledAnchor>
+          )}
+        </>
       )}
     </ResponsiveContext.Consumer>
   )
