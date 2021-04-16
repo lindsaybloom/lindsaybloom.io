@@ -13,6 +13,7 @@ import {
   ResponsiveContext,
 } from "grommet"
 import styled from "styled-components"
+import { Close } from "grommet-icons"
 
 const RoundBox = styled(Box)`
   border-radius: 20px;
@@ -59,13 +60,16 @@ const Blog = () => {
   }
   const [open, setOpen] = React.useState(false)
   const onOpen = () => setOpen(true)
-  const onClose = () => setOpen(false)
+  const onClose = () => {
+    setOpen(false)
+    window.location.reload()
+  }
   const handleSubmit = e => {
+    e.preventDefault()
     onOpen()
   }
   const size = React.useContext(ResponsiveContext)
   const flexDirection = size === "xsmall" || size === "small" ? "column" : "row"
-  console.log(flexDirection, size)
 
   return (
     <ResponsiveContext.Consumer>
@@ -105,6 +109,7 @@ const Blog = () => {
                   <TextInput
                     id="input-name"
                     name="name"
+                    required
                     onChange={handleChange}
                   />
                 </FormField>
@@ -112,6 +117,8 @@ const Blog = () => {
                   <TextInput
                     id="input-email"
                     name="email"
+                    input-type="email"
+                    required
                     onChange={handleChange}
                   />
                 </FormField>
@@ -130,6 +137,11 @@ const Blog = () => {
           <>
             {open && (
               <Layer position="center" onClickOutside={onClose} onEsc={onClose}>
+                <Box pad="small" direction="row" justify="end">
+                  <Button onClick={onClose}>
+                    <Close />
+                  </Button>
+                </Box>
                 <Box pad="medium" gap="small" width="medium">
                   <Heading level={3} margin="none">
                     Thanks for signing up! You'll receive an email when I

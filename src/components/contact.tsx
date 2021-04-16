@@ -96,6 +96,7 @@ const Contact = () => {
                     <TextInput
                       id="input-name"
                       name="name"
+                      required
                       onChange={handleChange}
                     />
                   </FormField>
@@ -103,6 +104,8 @@ const Contact = () => {
                     <TextInput
                       id="input-email"
                       name="email"
+                      input-type="email"
+                      required
                       onChange={handleChange}
                     />
                   </FormField>
