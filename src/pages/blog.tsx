@@ -90,10 +90,11 @@ const Blog = () => {
               name="email-signup"
               method="POST"
               data-netlify="true"
+              netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
               style={{ marginBottom: "0" }}
             >
-              <input type="hidden" name="form-name" value="email-signup" />
+              <input type="hidden" name="bot-field" value="email-signup" />
               <Box direction={flexDirection}>
                 <FormField
                   name="name"
