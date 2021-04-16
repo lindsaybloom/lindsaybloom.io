@@ -64,7 +64,17 @@ const Blog = () => {
     setOpen(false)
     window.location.reload()
   }
+  // const formRef = React.createRef<HTMLFormElement>()
   const handleSubmit = e => {
+    let form = document.getElementById("email-signup") as HTMLFormElement
+    let formData = new FormData(form)
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch(error => alert(error))
     e.preventDefault()
     onOpen()
   }
@@ -98,7 +108,7 @@ const Blog = () => {
               onSubmit={handleSubmit}
               style={{ marginBottom: "0" }}
             >
-              <input type="hidden" name="bot-field" value="email-signup" />
+              <input type="hidden" name="form-name" value="email-signup" />
               <Box direction={flexDirection}>
                 <FormField
                   name="name"

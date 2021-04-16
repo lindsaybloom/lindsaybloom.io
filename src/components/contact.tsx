@@ -38,6 +38,16 @@ const Contact = () => {
   const onClose = () => setOpen(false)
 
   const handleSubmit = e => {
+    let form = document.getElementById("contact-form") as HTMLFormElement
+    let formData = new FormData(form)
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData as any).toString(),
+    })
+      .then(() => console.log("Form successfully submitted"))
+      .catch(error => alert(error))
+    e.preventDefault()
     onOpen()
   }
 
@@ -82,7 +92,7 @@ const Contact = () => {
                 name="contact-form"
                 method="POST"
                 data-netlify="true"
-                netlify-honeypot="bot-field"
+                netlify-honeypot="form-name"
                 onSubmit={handleSubmit}
               >
                 <input type="hidden" name="bot-field" value="contact-form" />
