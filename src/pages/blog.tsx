@@ -1,9 +1,21 @@
 import * as React from "react"
 import Layout from "../components/layout"
-import Post from "../components/post"
 import PostTile from "../components/postTile"
 import { useStaticQuery, graphql } from "gatsby"
-import { Box, ResponsiveContext } from "grommet"
+import {
+  Heading,
+  Box,
+  FormField,
+  TextInput,
+  Button,
+  Text,
+  ResponsiveContext,
+} from "grommet"
+import styled from "styled-components"
+
+const RoundBox = styled(Box)`
+  border-radius: 20px;
+`
 
 const Blog = () => {
   const { blogPosts } = useStaticQuery(graphql`
@@ -39,18 +51,88 @@ const Blog = () => {
       }
     }
   `)
+  const [state, setState] = React.useState({})
+
+  const handleChange = e => {
+    setState({ ...state, [e.target.name]: e.target.value })
+  }
+  const [open, setOpen] = React.useState(false)
+  const onOpen = () => setOpen(true)
+  const onClose = () => setOpen(false)
+  const handleSubmit = e => {
+    onOpen()
+  }
+  const size = React.useContext(ResponsiveContext)
+  const flexDirection = size === "xsmall" || size === "small" ? "column" : "row"
+  console.log(flexDirection, size)
 
   return (
-    <>
-      <Layout>
-        <Box direction="column" pad={{ vertical: "large" }}>
-          {blogPosts.edges.map(post => (
-            <PostTile post={post} />
-          ))}
-        </Box>
-      </Layout>
-      <script src="https://www.twilik.com/assets/retainable/rss-embed/retainable.js"></script>
-    </>
+    <ResponsiveContext.Consumer>
+      {size => (
+        <Layout>
+          <RoundBox
+            direction="column"
+            align="center"
+            border={{ size: "xsmall" }}
+            pad="medium"
+            width="fit-content"
+            alignSelf="center"
+          >
+            <Heading textAlign="center" size="small">
+              Sign up for my email list!
+            </Heading>
+            <Text margin={{ bottom: "medium" }} textAlign="center">
+              Get an email notification for every post.
+            </Text>
+            <form
+              id="email-signup"
+              name="email-signup"
+              method="POST"
+              data-netlify="true"
+              onSubmit={handleSubmit}
+              style={{ marginBottom: "0" }}
+            >
+              <input type="hidden" name="form-name" value="email-signup" />
+              <Box direction={flexDirection}>
+                <FormField
+                  name="name"
+                  htmlFor="input-name"
+                  label="Name"
+                  margin={{ right: "large" }}
+                >
+                  <TextInput
+                    id="input-name"
+                    name="name"
+                    onChange={handleChange}
+                  />
+                </FormField>
+                <FormField name="email" htmlFor="input-email" label="Email">
+                  <TextInput
+                    id="input-email"
+                    name="email"
+                    onChange={handleChange}
+                  />
+                </FormField>
+              </Box>
+              <Box
+                margin={{ top: "medium" }}
+                direction="row"
+                gap="medium"
+                justify="center"
+              >
+                <Button type="submit" primary label="Signup" />
+              </Box>
+            </form>
+          </RoundBox>
+
+          <Box direction="column" pad={{ vertical: "large" }}>
+            {blogPosts.edges.map(post => (
+              <PostTile post={post} />
+            ))}
+          </Box>
+        </Layout>
+      )}
+    </ResponsiveContext.Consumer>
   )
 }
 export default Blog
