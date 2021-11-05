@@ -10,9 +10,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: jsmrcaga/action-netlify-deploy@master
+      - uses: actions/setup-node@v1
         with:
+          node-version: "12.x"
+      - run: npm install
+      - run: npm run build
+      # Deploy the gatsby build to Netlify
+      - uses: netlify/actions/cli@master
+        env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_DEPLOY_MESSAGE: "Prod deploy"
-          NETLIFY_DEPLOY_TO_PROD: true
+        with:
+          args: deploy --dir=public --prod
+          secrets: '["NETLIFY_AUTH_TOKEN", "NETLIFY_SITE_ID"]'
