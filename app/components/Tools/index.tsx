@@ -14,13 +14,13 @@ export const Tools = ({ className, tools }: ToolsProps) => {
         <div className="flex sm:flex-col lg:flex-row justify-between">
           {tools.map((tool, i) => (
             <div key={tool.category} className="flex flex-col">
-              <div className="text-bold text-lg mb-4 sm:mt-4 lg:mt-0 border-1 border-solid border-black">
+              <div className="text-bold text-lg mb-4 sm:mt-4 lg:mt-0 border-b border-solid">
                 {tool.category}
               </div>
               {tool.toolsCollection.items.map(t => (
                 <>
                   {t.url ? (
-                    <a key={t.url} href={t.url}>
+                    <a className="text-pinkLightest" key={t.url} href={t.url}>
                       {t.name}
                     </a>
                   ) : (

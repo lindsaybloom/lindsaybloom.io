@@ -11,7 +11,7 @@ export const TextInput = React.forwardRef(
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     return (
-      <div className="form-group flex flex-col">
+      <div className="form-group flex flex-col items-start">
         {label && <label htmlFor="input-field">{label}</label>}
         <input
           type={type}

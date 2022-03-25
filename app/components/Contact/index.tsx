@@ -3,6 +3,8 @@ import { H1, H3, Text } from "~/components/Typography"
 import { TextInput } from "~/components/TextInput"
 import { TextArea } from "~/components/TextArea"
 import { Modal } from "~/components/Modal"
+import { Form } from "remix"
+import { Button } from "~/components/Button"
 
 function encode(data: any) {
   return Object.keys(data)
@@ -10,7 +12,7 @@ function encode(data: any) {
     .join("&")
 }
 
-const Contact = () => {
+export const Contact = () => {
   const [state, setState] = React.useState({})
 
   const handleChange = (e: any) => {
@@ -36,34 +38,40 @@ const Contact = () => {
 
   return (
     <section id="contact">
-      <div className="mt-6 sm:mb-6 lg:mb-0 items-center">
-        <H1>Get in touch with me!</H1>
-        <Text>
-          Please email me directly at{" "}
-          <a href="mailto: lindsaybloomdev@gmail.com">
+      <div className="mt-6 sm:mb-6 lg:mb-0 items-center text-center">
+        <H1 className="mb-4">Get in touch with me!</H1>
+        <Text className="mb-7">
+          Please email me directly at
+          <a
+            className="text-pinkLightest"
+            href="mailto: lindsaybloomdev@gmail.com"
+          >
+            {" "}
             lindsaybloomdev@gmail.com
           </a>
           .
         </Text>
 
-        <a className="mt-6" href="mailto: lindsaybloomdev@gmail.com">
-          <div className="h-80 w-150 items-center justify-center rounded-2xl border-2 border-solid">
-            <Text>Email me!</Text>
-          </div>
+        <a
+          className="mt-6 border-2 rounded-3xl border-pinkLightest text-pinkLightest px-1 py-4 w-auto"
+          href="mailto: lindsaybloomdev@gmail.com"
+        >
+          Email me!
         </a>
 
         <Text className="my-6">Or, fill out this form!</Text>
 
-        <form
+        <Form
           id="contact-form"
           name="contact-form"
-          method="POST"
+          method="post"
           data-netlify="true"
           netlify-honeypot="form-name"
           onSubmit={handleSubmit}
+          className="flex flex-col items-center gap-6"
         >
           <input type="hidden" name="form-name" value="contact-form" />
-          <div className="flex">
+          <div className="flex justify-between w-1/2">
             <TextInput
               id="input-name"
               name="name"
@@ -86,10 +94,10 @@ const Contact = () => {
             label="Message"
             onChange={handleChange}
           />
-          <div className="mt-6 flex gap-3">
-            <button type="submit">Submit</button>
+          <div className="mt-3 flex gap-3 w-1/2">
+            <Button type="submit">Submit</Button>
           </div>
-        </form>
+        </Form>
       </div>
       {open && (
         <Modal>
@@ -104,5 +112,3 @@ const Contact = () => {
     </section>
   )
 }
-
-export default Contact

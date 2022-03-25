@@ -7,6 +7,7 @@ import { About } from "~/components/About"
 import { Landing } from "~/components/Landing"
 import { Tools } from "~/components/Tools"
 import { Jobs } from "~/components/Jobs"
+import { Contact } from "~/components/Contact"
 
 export const loader: LoaderFunction = args =>
   sendGraphQLRequest({
@@ -19,7 +20,6 @@ export const loader: LoaderFunction = args =>
 
 export default function Index() {
   const queryResult = useLoaderData()
-  console.log({ queryResult })
   const aboutText = queryResult.data.aboutText.items[0].text
   const photoUrl = queryResult.data.aboutImage.items[0].file.url
   const landingTagline = queryResult.data.landingTagline.items[0].text
@@ -40,6 +40,7 @@ export default function Index() {
         <About text={aboutText} photoUrl={photoUrl} />
         <Tools className="my-12" tools={tools} />
         <Jobs className="my-12" jobs={jobs} />
+        <Contact />
       </Layout>
     </div>
   )

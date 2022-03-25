@@ -16,7 +16,7 @@ export const Button = ({
       type={type}
       className={`${
         inline ? "w-auto" : "w-full"
-      } border-2 rounded-3xl border-pinkLightest text-white bg-pinkLightest p-1`}
+      } border-2 rounded-3xl border-pinkLightest text-white bg-pinkLightest py-1 px-3`}
       {...props}
     >
       {children}
