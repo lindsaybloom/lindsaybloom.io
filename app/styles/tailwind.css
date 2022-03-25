@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .post p,
+  .about p {
+    @apply text-base;
+    @apply font-light;
+    @apply mb-2;
+  }
+  .post h2,
+  .about h2 {
+    @apply text-2xl;
+    @apply font-medium;
+    @apply my-4;
+  }
+
+  footer .footer-icon {
+    @apply fill-pinkLight;
+  }
+
+  .about-photo {
+    width: 200px;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .about-photo {
+      width: 300px;
+    }
+  }
+
+  .landing-icons svg {
+    width: 50px;
+    height: 50px;
+    @apply fill-white;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .landing-icons svg {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  #cc-icon,
+  #cart-icon {
+    stroke: #ffffff;
+  }
+
+  #js-icon path {
+    stroke: #000000;
+  }
+
+  .company .react-tabs__tab--selected {
+    @apply outline-none;
+    @apply overflow-hidden;
+    @apply no-underline;
+  }
+
+  .company .react-tabs__tab--selected::after {
+    @apply bg-pinkLightest;
+  }
+
+  .company .react-tabs__tab--selected::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  .company .react-tabs__tab--selected:focus::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  .job li {
+    @apply list-disc;
+    @apply mb-1;
+  }
+}

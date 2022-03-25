@@ -1,0 +1,43 @@
+module.exports = {
+  content: ["./app/**/*.{ts,tsx,jsx,js}"],
+  theme: {
+    screens: {
+      sm: "480px",
+      md: "768px",
+      lg: "976px",
+      xl: "1440px",
+    },
+    colors: {
+      black: "#000000",
+      white: "#ffffff",
+      brand: "#9c9c9c",
+      pinkLightest: "#ff99eb",
+      pinkLight: "#ff70e2",
+      grayLightest: "#f8f8f8",
+      grayLight: "#999999",
+      grayMedium: "#666666",
+      grayDark: "#b0b0b0",
+      grayDarkest: "#121212",
+      text: "#eeeeee",
+    },
+    fontFamily: {
+      mono: "Anonymous Pro, monospace",
+    },
+    spacing: {
+      1: "8px",
+      2: "12px",
+      3: "16px",
+      4: "24px",
+      5: "32px",
+      6: "48px",
+      7: "52px",
+      8: "56px",
+      9: "60px",
+      10: "64px",
+      11: "68px",
+      12: "72px",
+    },
+    extend: {},
+  },
+  plugins: [],
+}
