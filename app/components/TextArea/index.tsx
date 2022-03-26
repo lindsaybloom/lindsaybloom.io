@@ -1,17 +1,18 @@
 import React from "react"
 
 type TextAreaProps = React.InputHTMLAttributes<HTMLTextAreaElement> & {
+  className?: string
   label?: string
   onChange?: (e: React.ChangeEvent) => void
 }
 
 export const TextArea = React.forwardRef(
   (
-    { label, placeholder, onChange, name, value }: TextAreaProps,
+    { label, placeholder, onChange, name, value, className }: TextAreaProps,
     ref: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
     return (
-      <div className="form-group flex flex-col items-start w-1/2">
+      <div className={`form-group flex flex-col items-start ${className}`}>
         {label && (
           <label htmlFor="input-field" className="mb-3">
             {label}

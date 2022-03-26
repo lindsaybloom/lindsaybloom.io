@@ -39,7 +39,7 @@ function getDate(dateString: string) {
 export const Jobs = ({ jobs, className }: JobsProps) => {
   return (
     <section className={className} id="jobs">
-      <div className="sm:pb-100 lg:pb-200">
+      <div className="pb-100 lg:pb-200">
         <H1>Where I've Worked</H1>
         <Tabs className="flex flex-col justify-start mt-6">
           <TabList className="pl-3 flex gap-3 text-pinkLightest company">

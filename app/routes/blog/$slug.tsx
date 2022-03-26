@@ -5,6 +5,7 @@ import { gqlEndpointNoToken, CDA_TOKEN } from "~/utils/gql"
 import { POST_QUERY } from "~/queries/blog"
 import { PostsQuery } from "~/types"
 import { Post } from "~/components/post"
+import { Layout } from "~/components/Layout"
 
 export const loader: LoaderFunction = args =>
   sendGraphQLRequest({
@@ -18,6 +19,9 @@ export const loader: LoaderFunction = args =>
 export default function PostSlug() {
   const posts = useLoaderData<PostsQuery>()
   const post = posts.data.blogPostCollection.items?.[0]
-  console.log({ post })
-  return <Post post={post} />
+  return (
+    <Layout>
+      <Post post={post} />
+    </Layout>
+  )
 }

@@ -1,5 +1,4 @@
 import React from "react"
-import Helmet from "react-helmet"
 import { ContentfulHero } from "~/types"
 import config from "../../config"
 
@@ -77,12 +76,12 @@ export const SEO = (props: SEOProps) => {
   ]
 
   return (
-    <Helmet>
+    <>
       <title>{pageTitle}</title>
       <meta name="robots" content="max-image-preview:large"></meta>
       {meta.map(m => (
         <meta key={m.name} {...m} />
       ))}
-    </Helmet>
+    </>
   )
 }

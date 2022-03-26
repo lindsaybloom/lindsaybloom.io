@@ -5,6 +5,7 @@ import { TextArea } from "~/components/TextArea"
 import { Modal } from "~/components/Modal"
 import { Form } from "remix"
 import { Button } from "~/components/Button"
+import { useTransition } from "remix"
 
 function encode(data: any) {
   return Object.keys(data)
@@ -36,9 +37,11 @@ export const Contact = () => {
     onOpen()
   }
 
+  const transition = useTransition()
+
   return (
     <section id="contact">
-      <div className="mt-6 sm:mb-6 lg:mb-0 items-center text-center">
+      <div className="w-full mt-6 mb-6 lg:mb-0 items-center text-center">
         <H1 className="mb-4">Get in touch with me!</H1>
         <Text className="mb-7">
           Please email me directly at
@@ -67,17 +70,19 @@ export const Contact = () => {
           method="post"
           data-netlify="true"
           netlify-honeypot="form-name"
+          encType="application/x-www-form-urlencoded"
           onSubmit={handleSubmit}
-          className="flex flex-col items-center gap-6"
+          className="flex flex-col items-center gap-6 w-full"
         >
           <input type="hidden" name="form-name" value="contact-form" />
-          <div className="flex justify-between w-1/2">
+          <div className="flex flex-col lg:flex-row justify-between w-full lg:w-1/2 gap-3">
             <TextInput
               id="input-name"
               name="name"
               required
               label="Name"
               onChange={handleChange}
+              className="w-full"
             />
             <TextInput
               id="input-email"
@@ -86,15 +91,17 @@ export const Contact = () => {
               required
               label="Email"
               onChange={handleChange}
+              className="w-full"
             />
           </div>
           <TextArea
+            className="w-full lg:w-1/2"
             id="input-message"
             name="message"
             label="Message"
             onChange={handleChange}
           />
-          <div className="mt-3 flex gap-3 w-1/2">
+          <div className="mt-3 flex gap-3 lg:w-1/2">
             <Button type="submit">Submit</Button>
           </div>
         </Form>

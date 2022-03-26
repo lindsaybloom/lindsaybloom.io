@@ -1,9 +1,10 @@
 import React from "react"
 import { H1, H3, Text } from "../../components/Typography"
-import { Close } from "grommet-icons"
+import { IoCloseOutline } from "react-icons/io5"
 import { TextInput } from "~/components/TextInput"
 import { Modal } from "~/components/Modal"
 import { Button } from "~/components/Button"
+import { Form } from "remix"
 
 type EmailSignUpProps = {
   className?: string
@@ -43,17 +44,17 @@ export const EmailSignUp = ({ className }: EmailSignUpProps) => {
         <Text className="m-4 text-center">
           Get an email notification for every post.
         </Text>
-        <form
+        <Form
           id="email-signup"
           name="email-signup"
-          method="POST"
+          method="post"
           data-netlify="true"
           netlify-honeypot="bot-field"
           onSubmit={handleSubmit}
           style={{ marginBottom: "0" }}
         >
           <input type="hidden" name="form-name" value="email-signup" />
-          <div className="flex sm:flex-col lg:flex-row justify-between gap-3">
+          <div className="flex flex-col lg:flex-row justify-between gap-3">
             <TextInput
               id="input-name"
               name="name"
@@ -73,14 +74,14 @@ export const EmailSignUp = ({ className }: EmailSignUpProps) => {
           <div className="mt-4 flex gap-3 justify-center">
             <Button type="submit">Signup</Button>
           </div>
-        </form>
+        </Form>
       </div>
       <>
         {open && (
           <Modal>
             <div className="p-2 flex justify-end">
               <Button onClick={onClose}>
-                <Close />
+                <IoCloseOutline />
               </Button>
             </div>
             <div className="p-3 gap-2">

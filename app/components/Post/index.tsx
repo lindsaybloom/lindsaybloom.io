@@ -22,7 +22,7 @@ function getFormattedDate(dateString: string) {
 
 export const Post = ({ post }: PostProps) => {
   return (
-    <article className="post px-8 py-3 text-grayLightest" id={post.slug}>
+    <article className="post py-3 text-grayLightest" id={post.slug}>
       <SEO hero={post.hero} title={post.title} description={post.description} />
       {post.hero && <img src={post.hero.url} />}
       <Text className="mb-2">{getFormattedDate(post.date)}</Text>

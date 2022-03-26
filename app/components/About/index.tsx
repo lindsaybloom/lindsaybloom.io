@@ -1,4 +1,3 @@
-import React from "react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { H1 } from "../Typography"
 import { ContentfulAbout } from "~/types"
@@ -12,11 +11,11 @@ export const About = ({ text, photoUrl }: AboutProps) => {
     <section id="about">
       <div className="about p-150">
         <H1>Who am I?</H1>
-        <div className="flex sm:flex-col lg:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col sm:w-full lg:w-60">
+        <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
+          <div className="flex flex-col w-full lg:w-60">
             {documentToReactComponents(text.json)}
           </div>
-          <div className="self-end">
+          <div className="lg:self-end">
             <div className="about-photo">
               <img
                 className="object-contain static"

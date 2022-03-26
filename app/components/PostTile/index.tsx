@@ -11,7 +11,7 @@ export const PostTile = ({ post }: PostTileProps) => {
   return (
     <>
       {post.hero ? (
-        <div className="flex mb-6">
+        <div className="flex flex-col lg:flex-row mb-6">
           <div className="w-full m-auto">
             <img className="object-contain" src={post.hero.url} />
           </div>
