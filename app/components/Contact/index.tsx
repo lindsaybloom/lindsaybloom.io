@@ -106,7 +106,10 @@ export const Contact = () => {
             </Form>
           </>
         ) : (
-          <FormSubmitted copy="Form successfully submitted" />
+          <FormSubmitted
+            className="fadeIn"
+            copy="Form successfully submitted"
+          />
         )}
       </div>
     </section>

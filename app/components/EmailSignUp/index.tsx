@@ -75,7 +75,10 @@ export const EmailSignUp = ({ className }: EmailSignUpProps) => {
             </div>
           </Form>
         ) : (
-          <FormSubmitted copy="Form successfully submitted" />
+          <FormSubmitted
+            className="fadeIn"
+            copy="Form successfully submitted"
+          />
         )}
       </div>
     </>
