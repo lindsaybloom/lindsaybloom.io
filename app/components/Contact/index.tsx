@@ -1,11 +1,10 @@
 import React from "react"
-import { H1, H3, Text } from "~/components/Typography"
+import { H1, Text } from "~/components/Typography"
 import { TextInput } from "~/components/TextInput"
 import { TextArea } from "~/components/TextArea"
-import { Modal } from "~/components/Modal"
-import { Form } from "remix"
+import { Form, useActionData } from "remix"
 import { Button } from "~/components/Button"
-import { useTransition } from "remix"
+import { FormSubmitted } from "~/components/FormSubmitted"
 
 function encode(data: any) {
   return Object.keys(data)
@@ -15,29 +14,29 @@ function encode(data: any) {
 
 export const Contact = () => {
   const [state, setState] = React.useState({})
+  const [isOpen, toggle] = React.useState(false)
 
   const handleChange = (e: any) => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
-  const [open, setOpen] = React.useState(false)
-  const onOpen = () => setOpen(true)
-  const onClose = () => setOpen(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
-    let form = document.getElementById("contact-form") as HTMLFormElement
-    let formData = new FormData(form)
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData as any).toString(),
-    })
-      .then(() => console.log("Form successfully submitted"))
-      .catch(error => alert(error))
-    e.preventDefault()
-    onOpen()
-  }
+  const actionData = useActionData()
 
-  const transition = useTransition()
+  React.useEffect(() => {
+    if (actionData?.formData?._fields) {
+      toggle(true)
+      const body = new URLSearchParams(
+        actionData?.formData?._fields as any
+      ).toString()
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      })
+        .then(() => console.log("Form successfully submitted"))
+        .catch(error => alert(error))
+    }
+  }, [actionData])
 
   return (
     <section id="contact">
@@ -61,61 +60,55 @@ export const Contact = () => {
         >
           Email me!
         </a>
+        {!isOpen ? (
+          <>
+            <Text className="my-6">Or, fill out this form!</Text>
 
-        <Text className="my-6">Or, fill out this form!</Text>
-
-        <Form
-          id="contact-form"
-          name="contact-form"
-          method="post"
-          data-netlify="true"
-          netlify-honeypot="form-name"
-          encType="application/x-www-form-urlencoded"
-          onSubmit={handleSubmit}
-          className="flex flex-col items-center gap-6 w-full"
-        >
-          <input type="hidden" name="form-name" value="contact-form" />
-          <div className="flex flex-col lg:flex-row justify-between w-full lg:w-1/2 gap-3">
-            <TextInput
-              id="input-name"
-              name="name"
-              required
-              label="Name"
-              onChange={handleChange}
-              className="w-full"
-            />
-            <TextInput
-              id="input-email"
-              name="email"
-              input-type="email"
-              required
-              label="Email"
-              onChange={handleChange}
-              className="w-full"
-            />
-          </div>
-          <TextArea
-            className="w-full lg:w-1/2"
-            id="input-message"
-            name="message"
-            label="Message"
-            onChange={handleChange}
-          />
-          <div className="mt-3 flex gap-3 lg:w-1/2">
-            <Button type="submit">Submit</Button>
-          </div>
-        </Form>
+            <Form
+              id="contact-form"
+              name="contact-form"
+              method="post"
+              data-netlify="true"
+              netlify-honeypot="form-name"
+              encType="application/x-www-form-urlencoded"
+              className="flex flex-col items-center gap-6 w-full"
+            >
+              <input type="hidden" name="form-name" value="contact-form" />
+              <div className="flex flex-col lg:flex-row justify-between w-full lg:w-1/2 gap-3">
+                <TextInput
+                  id="input-name"
+                  name="name"
+                  required
+                  label="Name"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+                <TextInput
+                  id="input-email"
+                  name="email"
+                  input-type="email"
+                  required
+                  label="Email"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+              </div>
+              <TextArea
+                className="w-full lg:w-1/2"
+                id="input-message"
+                name="message"
+                label="Message"
+                onChange={handleChange}
+              />
+              <div className="mt-3 flex gap-3 lg:w-1/2">
+                <Button type="submit">Submit</Button>
+              </div>
+            </Form>
+          </>
+        ) : (
+          <FormSubmitted copy="Form successfully submitted" />
+        )}
       </div>
-      {open && (
-        <Modal>
-          <div className="p-3 gap-2">
-            <H3 className="m-0">
-              Thanks for reaching out! I'll do my best to get back to you as
-              soon as possible.
-            </H3>
-          </div>
-        </Modal>
-      )}
     </section>
   )
 }

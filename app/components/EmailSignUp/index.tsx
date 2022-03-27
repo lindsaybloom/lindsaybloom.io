@@ -1,10 +1,9 @@
 import React from "react"
-import { H1, H3, Text } from "../../components/Typography"
-import { IoCloseOutline } from "react-icons/io5"
+import { H1, Text } from "../../components/Typography"
 import { TextInput } from "~/components/TextInput"
-import { Modal } from "~/components/Modal"
 import { Button } from "~/components/Button"
-import { Form } from "remix"
+import { Form, useActionData } from "remix"
+import { FormSubmitted } from "../FormSubmitted"
 
 type EmailSignUpProps = {
   className?: string
@@ -12,29 +11,29 @@ type EmailSignUpProps = {
 
 export const EmailSignUp = ({ className }: EmailSignUpProps) => {
   const [state, setState] = React.useState({})
+  const actionData = useActionData()
 
   const handleChange = (e: any) => {
     setState({ ...state, [e.target.name]: e.target.value })
   }
-  const [open, setOpen] = React.useState(false)
-  const onOpen = () => setOpen(true)
-  const onClose = () => {
-    setOpen(false)
-    window.location.reload()
-  }
-  const handleSubmit = (e: React.FormEvent) => {
-    let form = document.getElementById("email-signup") as HTMLFormElement
-    let formData = new FormData(form)
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData as any).toString(),
-    })
-      .then(() => console.log("Form successfully submitted"))
-      .catch(error => alert(error))
-    e.preventDefault()
-    onOpen()
-  }
+  const [isOpen, toggle] = React.useState(false)
+
+  React.useEffect(() => {
+    if (actionData?.formData?._fields) {
+      toggle(true)
+      const body = new URLSearchParams(
+        actionData?.formData?._fields as any
+      ).toString()
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      })
+        .then(() => console.log("Form successfully submitted"))
+        .catch(error => alert(error))
+    }
+  }, [actionData])
+
   return (
     <>
       <div
@@ -44,55 +43,41 @@ export const EmailSignUp = ({ className }: EmailSignUpProps) => {
         <Text className="m-4 text-center">
           Get an email notification for every post.
         </Text>
-        <Form
-          id="email-signup"
-          name="email-signup"
-          method="post"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          onSubmit={handleSubmit}
-          style={{ marginBottom: "0" }}
-        >
-          <input type="hidden" name="form-name" value="email-signup" />
-          <div className="flex flex-col lg:flex-row justify-between gap-3">
-            <TextInput
-              id="input-name"
-              name="name"
-              label="Name"
-              required
-              onChange={handleChange}
-            />
-            <TextInput
-              id="input-email"
-              name="email"
-              input-type="email"
-              label="Email"
-              required
-              onChange={handleChange}
-            />
-          </div>
-          <div className="mt-4 flex gap-3 justify-center">
-            <Button type="submit">Signup</Button>
-          </div>
-        </Form>
-      </div>
-      <>
-        {open && (
-          <Modal>
-            <div className="p-2 flex justify-end">
-              <Button onClick={onClose}>
-                <IoCloseOutline />
-              </Button>
+        {!isOpen ? (
+          <Form
+            id="email-signup"
+            name="email-signup"
+            method="post"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            style={{ marginBottom: "0" }}
+          >
+            <input type="hidden" name="form-name" value="email-signup" />
+            <div className="flex flex-col lg:flex-row justify-between gap-3">
+              <TextInput
+                id="input-name"
+                name="name"
+                label="Name"
+                required
+                onChange={handleChange}
+              />
+              <TextInput
+                id="input-email"
+                name="email"
+                input-type="email"
+                label="Email"
+                required
+                onChange={handleChange}
+              />
             </div>
-            <div className="p-3 gap-2">
-              <H3 className="m-0">
-                Thanks for signing up! You'll receive an email when I release my
-                next post.
-              </H3>
+            <div className="mt-4 flex gap-3 justify-center">
+              <Button type="submit">Signup</Button>
             </div>
-          </Modal>
+          </Form>
+        ) : (
+          <FormSubmitted copy="Form successfully submitted" />
         )}
-      </>
+      </div>
     </>
   )
 }

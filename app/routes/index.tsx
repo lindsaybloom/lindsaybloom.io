@@ -8,6 +8,14 @@ import { Landing } from "~/components/Landing"
 import { Tools } from "~/components/Tools"
 import { Jobs } from "~/components/Jobs"
 import { Contact } from "~/components/Contact"
+import { json, ActionFunction } from "remix"
+
+export const action: ActionFunction = async ({ request }) => {
+  const form = await request.formData()
+  console.log(JSON.stringify(form))
+
+  return json({ formData: form })
+}
 
 export const loader: LoaderFunction = args =>
   sendGraphQLRequest({

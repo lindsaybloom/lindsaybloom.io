@@ -28,9 +28,7 @@ export const Landing = ({
           <Text>Hey, I'm</Text>
           <H1 className="mt-3 lg:mt-0 lg:ml-3 mb-3">Lindsay Bloom</H1>
         </div>
-        <div>
-          <H1 className="mt-0">{tagline}</H1>
-        </div>
+        <H1 className="mt-0 lg:w-3/4 mb-3">{tagline}</H1>
         <div className="lg:hidden mt-4 mb-6 flex justify-center">
           <img
             className="object-contain"
@@ -42,7 +40,7 @@ export const Landing = ({
           <div className="flex w-full lg:w-7/12 pt-300 lg:pt-0">
             {documentToReactComponents(description.text.json)}
           </div>
-          <div className="hidden lg:flex lg:absolute right-1 bottom-1/2 lg:-bottom-1/2">
+          <div className="hidden lg:flex lg:absolute right-1 bottom-1/2 lg:-bottom-[90%] xl:-bottom-[150%]">
             <img
               className="object-contain"
               src={imageUrl}

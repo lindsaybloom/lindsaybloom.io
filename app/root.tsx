@@ -27,7 +27,6 @@ export const loader: LoaderFunction = args =>
   })
 
 export const meta: MetaFunction = ({ data }) => {
-  console.log(data)
   const metadata = data.data.metadata.items[0]
 
   return {

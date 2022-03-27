@@ -596,14 +596,6 @@ footer .footer-icon {
   bottom: 50%;
 }
 
-.top-1\/2 {
-  top: 50%;
-}
-
-.top-1\/3 {
-  top: 33.333333%;
-}
-
 .top-3\/4 {
   top: 75%;
 }
@@ -630,14 +622,14 @@ footer .footer-icon {
   margin-bottom: 48px;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .my-8 {
   margin-top: 56px;
   margin-bottom: 56px;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mx-6 {
@@ -689,6 +681,10 @@ footer .footer-icon {
   margin-left: 16px;
 }
 
+.mt-8 {
+  margin-top: 56px;
+}
+
 .block {
   display: block;
 }
@@ -717,8 +713,8 @@ footer .footer-icon {
   display: none;
 }
 
-.h-6 {
-  height: 48px;
+.h-5 {
+  height: 32px;
 }
 
 .h-screen {
@@ -733,16 +729,12 @@ footer .footer-icon {
   height: 64px;
 }
 
-.h-3 {
-  height: 16px;
+.h-6 {
+  height: 48px;
 }
 
 .h-4 {
   height: 24px;
-}
-
-.h-5 {
-  height: 32px;
 }
 
 .min-h-screen {
@@ -763,8 +755,8 @@ footer .footer-icon {
   width: fit-content;
 }
 
-.w-6 {
-  width: 48px;
+.w-5 {
+  width: 32px;
 }
 
 .w-12 {
@@ -775,12 +767,12 @@ footer .footer-icon {
   width: 64px;
 }
 
-.w-4 {
-  width: 24px;
+.w-6 {
+  width: 48px;
 }
 
-.w-5 {
-  width: 32px;
+.w-4 {
+  width: 24px;
 }
 
 .max-w-none {
@@ -885,12 +877,6 @@ footer .footer-icon {
   gap: 12px;
 }
 
-.space-x-8 > :not([hidden]) ~ :not([hidden]) {
-  --tw-space-x-reverse: 0;
-  margin-right: calc(56px * var(--tw-space-x-reverse));
-  margin-left: calc(56px * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .self-center {
   align-self: center;
 }
@@ -931,16 +917,16 @@ footer .footer-icon {
   border-width: 1px;
 }
 
+.border-t {
+  border-top-width: 1px;
+}
+
 .border-b-2 {
   border-bottom-width: 2px;
 }
 
 .border-b {
   border-bottom-width: 1px;
-}
-
-.border-t {
-  border-top-width: 1px;
 }
 
 .border-solid {
@@ -981,16 +967,16 @@ footer .footer-icon {
      object-fit: contain;
 }
 
-.p-3 {
-  padding: 16px;
-}
-
 .p-4 {
   padding: 24px;
 }
 
 .p-2 {
   padding: 12px;
+}
+
+.p-3 {
+  padding: 16px;
 }
 
 .p-6 {
@@ -1025,11 +1011,6 @@ footer .footer-icon {
 .px-4 {
   padding-left: 24px;
   padding-right: 24px;
-}
-
-.py-8 {
-  padding-top: 56px;
-  padding-bottom: 56px;
 }
 
 .py-3 {
@@ -1083,14 +1064,14 @@ footer .footer-icon {
   font-family: Anonymous Pro, monospace;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .text-sm {
@@ -1155,14 +1136,6 @@ footer .footer-icon {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
-.transition {
-  transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
 .transition-opacity {
   transition-property: opacity;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -1211,8 +1184,8 @@ footer .footer-icon {
     position: absolute;
   }
 
-  .lg\:-bottom-1\/2 {
-    bottom: -50%;
+  .lg\:-bottom-\[90\%\] {
+    bottom: -90%;
   }
 
   .lg\:mb-3 {
@@ -1239,6 +1212,10 @@ footer .footer-icon {
     width: 16.666667%;
   }
 
+  .lg\:w-3\/4 {
+    width: 75%;
+  }
+
   .lg\:w-7\/12 {
     width: 58.333333%;
   }
@@ -1257,5 +1234,11 @@ footer .footer-icon {
 
   .lg\:text-left {
     text-align: left;
+  }
+}
+
+@media (min-width: 1440px) {
+  .xl\:-bottom-\[150\%\] {
+    bottom: -150%;
   }
 }
