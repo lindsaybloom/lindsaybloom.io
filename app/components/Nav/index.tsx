@@ -1,4 +1,3 @@
-import React from "react"
 import config from "../../../config"
 import LogoV2 from "../Logo/logoV2"
 import { Link } from "remix"

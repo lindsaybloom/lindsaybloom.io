@@ -1,4 +1,3 @@
-import React from "react"
 import { H1, Text } from "~/components/Typography"
 import { ContentfulPost } from "~/types"
 import { Link } from "remix"

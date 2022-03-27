@@ -6,12 +6,6 @@ import { Form, useActionData } from "remix"
 import { Button } from "~/components/Button"
 import { FormSubmitted } from "~/components/FormSubmitted"
 
-function encode(data: any) {
-  return Object.keys(data)
-    .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join("&")
-}
-
 export const Contact = () => {
   const [state, setState] = React.useState({})
   const [isOpen, toggle] = React.useState(false)

@@ -12,7 +12,6 @@ import { json, ActionFunction } from "remix"
 
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData()
-  console.log(JSON.stringify(form))
 
   return json({ formData: form })
 }

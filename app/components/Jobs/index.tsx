@@ -1,4 +1,3 @@
-import React from "react"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { ContentfulJob } from "~/types"
 import { Text, H1 } from "~/components/Typography"

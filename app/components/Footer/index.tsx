@@ -1,4 +1,3 @@
-import React from "react"
 import { BsInstagram, BsTwitter, BsGithub, BsLinkedin } from "react-icons/bs"
 import { Span } from "~/components/Typography"
 
