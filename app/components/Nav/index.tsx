@@ -11,7 +11,7 @@ const Nav = () => {
   )
 
   return (
-    <header className="flex flex-row align-middle justify-between py-3 mx-6">
+    <header className="flex flex-row align-middle justify-between py-3 mx-6 text-pinkLightest">
       <div className="flex flex-row align-middle gap-2 w-60">
         <Link to="/">
           <LogoV2 height={60} width={100} />

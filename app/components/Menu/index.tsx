@@ -1,5 +1,6 @@
 import React from "react"
 import { FiMenu } from "react-icons/fi"
+import { IoChevronDownOutline } from "react-icons/io5"
 
 export type MenuItemProps = {
   label: string
@@ -30,13 +31,17 @@ export const Menu = ({ label, items }: MenuProps) => {
   return (
     <nav className="container flex justify-end relative">
       <button className="flex lg:hidden items-center" onClick={handleClick}>
-        <FiMenu className="w-5 h-5" />
+        {!isOpen ? (
+          <FiMenu className="w-5 h-5" />
+        ) : (
+          <IoChevronDownOutline className="w-5 h-5 fadeIn" />
+        )}
         {label && (
           <h3 className="text-2xl font-medium text-blue-500 pl-3">{label}</h3>
         )}
       </button>
       {isOpen && (
-        <div className="flex flex-col top-3/4 absolute border border-white bg-grayDarkest">
+        <div className="flex flex-col top-3/4 absolute border border-white bg-grayDarkest fadeIn">
           {items.map(item => (
             <MenuItem key={item.href} onClick={handleClick} {...item} />
           ))}
