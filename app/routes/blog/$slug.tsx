@@ -1,11 +1,11 @@
 import { useLoaderData } from "remix"
 import type { LoaderFunction } from "remix"
 import { sendGraphQLRequest } from "remix-graphql/index.server"
-import { gqlEndpointNoToken, CDA_TOKEN } from "~/utils/gql"
-import { POST_QUERY } from "~/queries/blog"
-import { PostsQuery } from "~/types"
-import { Post } from "~/components/post"
-import { Layout } from "~/components/Layout"
+import { gqlEndpointNoToken, CDA_TOKEN } from "../../utils/gql"
+import { POST_QUERY } from "../../queries/blog"
+import { PostsQuery } from "../../types"
+import { Post } from "../../components/Post"
+import { Layout } from "../../components/Layout"
 
 export const loader: LoaderFunction = args =>
   sendGraphQLRequest({
