@@ -42,7 +42,7 @@ export const Menu = ({ label, items }: MenuProps) => {
       </button>
       {isOpen && (
         <div className="flex flex-col top-3/4 absolute border border-white bg-grayDarkest fadeIn">
-          {items.map(item => (
+          {items?.map(item => (
             <MenuItem key={item.href} onClick={handleClick} {...item} />
           ))}
         </div>

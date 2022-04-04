@@ -13,7 +13,7 @@ export const About = ({ text, photoUrl }: AboutProps) => {
         <H1>Who am I?</H1>
         <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
           <div className="flex flex-col w-full lg:w-60">
-            {documentToReactComponents(text.json)}
+            {documentToReactComponents(text?.json)}
           </div>
           <div className="lg:self-end">
             <div className="about-photo">

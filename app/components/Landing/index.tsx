@@ -38,7 +38,7 @@ export const Landing = ({
         </div>
         <div className="relative flex flex-col lg:flex-row justify-between">
           <div className="flex w-full lg:w-7/12 pt-300 lg:pt-0">
-            {documentToReactComponents(description.text.json)}
+            {documentToReactComponents(description?.text?.json)}
           </div>
           <div className="hidden lg:flex lg:absolute right-1 bottom-1/2 lg:-bottom-[90%] xl:-bottom-[150%]">
             <img

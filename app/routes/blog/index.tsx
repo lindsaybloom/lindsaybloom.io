@@ -29,7 +29,7 @@ export default function Posts() {
     <Layout className="py-4 flex flex-col">
       <EmailSignUp className="mb-6 self-center" />
       <ul>
-        {posts.data.blogPostCollection.items.map(post => (
+        {posts?.data?.blogPostCollection?.items?.map(post => (
           <li key={post.slug} className="mb-6">
             <PostTile post={post} />
           </li>

@@ -27,13 +27,13 @@ export const loader: LoaderFunction = args =>
 
 export default function Index() {
   const queryResult = useLoaderData()
-  const aboutText = queryResult.data.aboutText.items[0].text
-  const photoUrl = queryResult.data.aboutImage.items[0].file.url
-  const landingTagline = queryResult.data.landingTagline.items[0].text
-  const landingDescription = queryResult.data.landingDescription.items[0]
-  const landingImageUrl = queryResult.data.landingImage.items[0].file.url
-  const tools = queryResult.data.tools.items
-  const jobs = queryResult.data.jobs.items
+  const aboutText = queryResult?.data?.aboutText?.items[0]?.text
+  const photoUrl = queryResult?.data?.aboutImage?.items[0]?.file?.url
+  const landingTagline = queryResult?.data?.landingTagline?.items?.[0]?.text
+  const landingDescription = queryResult?.data?.landingDescription?.items?.[0]
+  const landingImageUrl = queryResult?.data?.landingImage?.items?.[0]?.file?.url
+  const tools = queryResult?.data?.tools?.items
+  const jobs = queryResult?.data?.jobs?.items
 
   return (
     <div>

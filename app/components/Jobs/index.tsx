@@ -42,26 +42,26 @@ export const Jobs = ({ jobs, className }: JobsProps) => {
         <H1>Where I've Worked</H1>
         <Tabs className="flex flex-col justify-start mt-6">
           <TabList className="pl-3 flex gap-3 text-pinkLightest company">
-            {jobs.map(j => (
-              <Tab className="relative cursor-grab" key={j.company}>
-                {j.company}
+            {jobs?.map(j => (
+              <Tab className="relative cursor-grab" key={j?.company}>
+                {j?.company}
               </Tab>
             ))}
           </TabList>
-          {jobs.map(j => (
-            <TabPanel className="job" key={j.company} title={j.company}>
+          {jobs?.map(j => (
+            <TabPanel className="job" key={j?.company} title={j?.company}>
               <div className="flex py-6 pl-3 items-start justify-between">
                 <Text className="">
-                  {j.position} @ <a href={j.website}>{j.company}</a>
+                  {j?.position} @ <a href={j?.website}>{j?.company}</a>
                 </Text>
                 <Text className="text-bold">
-                  {getDate(j.startDate)} -{" "}
-                  {j.endDate ? getDate(j.endDate) : "Present"}
+                  {getDate(j?.startDate)} -{" "}
+                  {j?.endDate ? getDate(j?.endDate) : "Present"}
                 </Text>
               </div>
-              {j.description && (
+              {j?.description && (
                 <div className="pl-3 max-w-none">
-                  {documentToReactComponents(j.description.json)}
+                  {documentToReactComponents(j?.description?.json)}
                 </div>
               )}
             </TabPanel>

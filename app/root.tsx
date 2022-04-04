@@ -27,20 +27,20 @@ export const loader: LoaderFunction = args =>
   })
 
 export const meta: MetaFunction = ({ data }) => {
-  const metadata = data.data.metadata.items[0]
+  const metadata = data?.data?.metadata?.items?.[0]
 
   return {
     charset: "utf-8",
-    title: metadata.title,
+    title: metadata?.title,
     viewport: "width=device-width,initial-scale=1",
-    description: metadata.description,
+    description: metadata?.description,
     keywords: config.siteKeywords,
     "google-site-verification": config.googleVerification,
-    "og:title": metadata.title,
-    "og:description": metadata.description,
+    "og:title": metadata?.title,
+    "og:description": metadata?.description,
     "og:type": "website",
     "og:url": config.siteUrl,
-    "og:site_name": metadata.title,
+    "og:site_name": metadata?.title,
     "og:image:width": "1200",
     "og:image:height": "630",
     "og:image:type": "image/png",
@@ -49,9 +49,9 @@ export const meta: MetaFunction = ({ data }) => {
     "twitter:url": config.siteUrl,
     "twitter:site": config.twitterHandle,
     "twitter:creator": config.twitterHandle,
-    "twitter:title": metadata.title,
-    "twitter:description": metadata.description,
-    "twitter:image:alt": metadata.title,
+    "twitter:title": metadata?.title,
+    "twitter:description": metadata?.description,
+    "twitter:image:alt": metadata?.title,
     "msapplication-TileImage": logoIcon,
   }
 }
