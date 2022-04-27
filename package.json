@@ -13,8 +13,7 @@
     "dev:remix": "remix dev",
     "generate:css": "npx tailwindcss -i ./app/styles/tailwind.css -o ./app/tailwind.css",
     "postinstall": "remix setup node",
-    "start": "remix-serve netlify/functions/server/build",
-    "dev:netlify": "cross-env NODE_ENV=development netlify dev"
+    "start": "remix-serve netlify/functions/server/build"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^15.11.1",

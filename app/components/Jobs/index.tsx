@@ -50,7 +50,7 @@ export const Jobs = ({ jobs, className }: JobsProps) => {
           </TabList>
           {jobs?.map(j => (
             <TabPanel className="job" key={j?.company} title={j?.company}>
-              <div className="flex py-6 pl-3 items-start justify-between">
+              <div className="flex flex-col lg:flex-row py-6 pl-3 items-start justify-between">
                 <Text className="">
                   {j?.position} @ <a href={j?.website}>{j?.company}</a>
                 </Text>
