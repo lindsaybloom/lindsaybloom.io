@@ -28,6 +28,14 @@ export const Menu = ({ items }: MenuProps) => {
 
   const handleClick = () => toggle(!isOpen)
 
+  // Keep the page behind the open menu from scrolling
+  React.useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : ""
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [isOpen])
+
   return (
     <div className="md:hidden">
       <button
@@ -48,9 +56,11 @@ export const Menu = ({ items }: MenuProps) => {
         />
       </button>
       {isOpen && (
+        // The header's backdrop-filter makes it this panel's containing block,
+        // so size against the viewport explicitly rather than with bottom-0
         <nav
           aria-label="Primary"
-          className="globalnav fixed inset-x-0 top-11 bottom-0 px-12 pt-6 fadeIn"
+          className="fixed inset-x-0 top-11 h-[calc(100vh-44px)] overflow-y-auto bg-[#fafafc] px-12 pt-6 fadeIn"
         >
           {items?.map(item => (
             <MenuItem key={item.href} onClick={handleClick} {...item} />
