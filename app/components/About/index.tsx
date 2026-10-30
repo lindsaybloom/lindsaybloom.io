@@ -8,22 +8,22 @@ type AboutProps = ContentfulAbout & {
 
 export const About = ({ text, photoUrl }: AboutProps) => {
   return (
-    <section id="about">
-      <div className="about p-150">
-        <H1>Who am I?</H1>
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-4">
-          <div className="flex flex-col w-full lg:w-60">
+    <section id="about" className="section bg-mist">
+      <div className="section-content">
+        <H1 className="text-center">Who am I?</H1>
+        <div className="mt-12 grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+          <div className="rich-text t-intro text-secondary lg:col-span-3">
             {documentToReactComponents(text?.json)}
           </div>
-          <div className="lg:self-end">
-            <div className="about-photo">
+          {photoUrl && (
+            <div className="lg:col-span-2 flex justify-center">
               <img
-                className="object-contain static"
+                className="tile w-full max-w-sm object-cover"
                 src={photoUrl}
                 alt="Lindsay at the Santa Monica Pier"
               />
             </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

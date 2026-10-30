@@ -1,4 +1,4 @@
-import { Text, H1 } from "~/components/Typography"
+import { H1, H3 } from "~/components/Typography"
 import { ContentfulTools } from "~/types"
 
 type ToolsProps = {
@@ -6,28 +6,28 @@ type ToolsProps = {
   tools: Array<ContentfulTools>
 }
 
-export const Tools = ({ className, tools }: ToolsProps) => {
+export const Tools = ({ className = "", tools }: ToolsProps) => {
   return (
-    <section className={className} id="tools">
-      <div className="pt-0 lg:pt-100 pb-100 lg:pb-300">
-        <H1>Tools and Technologies I Use</H1>
-        <div className="flex flex-col lg:flex-row justify-between">
-          {tools?.map((tool, i) => (
-            <div key={tool.category} className="flex flex-col">
-              <div className="text-bold text-lg mb-4 mt-4 lg:mt-0 border-b border-solid">
-                {tool.category}
-              </div>
-              {tool.toolsCollection?.items?.map(t => (
-                <>
-                  {t.url ? (
-                    <a className="text-pinkLightest" key={t.url} href={t.url}>
-                      {t.name}
-                    </a>
-                  ) : (
-                    <Text key={t.name}>{t.name}</Text>
-                  )}
-                </>
-              ))}
+    <section id="tools" className={`section bg-black text-mist ${className}`}>
+      <div className="section-content">
+        <H1 className="text-center">Tools and technologies I use.</H1>
+        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {tools?.map(tool => (
+            <div key={tool.category} className="tile bg-graphite p-8">
+              <H3 className="mb-5">{tool.category}</H3>
+              <ul className="flex flex-col gap-2 t-body">
+                {tool.toolsCollection?.items?.map(t => (
+                  <li key={t.name}>
+                    {t.url ? (
+                      <a className="text-linkDark link-chevron" href={t.url}>
+                        {t.name}
+                      </a>
+                    ) : (
+                      <span className="text-tertiary">{t.name}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

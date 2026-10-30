@@ -1,6 +1,4 @@
 import React from "react"
-import { FiMenu } from "react-icons/fi"
-import { IoChevronDownOutline } from "react-icons/io5"
 
 export type MenuItemProps = {
   label: string
@@ -9,44 +7,56 @@ export type MenuItemProps = {
 }
 
 type MenuProps = {
-  label?: string
   items: Array<MenuItemProps>
 }
 
 const MenuItem = ({ label, href, onClick }: MenuItemProps) => {
   return (
-    <a className="p-2 text-lg border-t" href={href} onClick={onClick}>
+    <a
+      className="block py-2 t-callout text-ink hover:no-underline hover:text-black"
+      href={href}
+      onClick={onClick}
+    >
       {label}
     </a>
   )
 }
 
-export const Menu = ({ label, items }: MenuProps) => {
+// Two-line icon that morphs into an X, like a compact mobile global nav
+export const Menu = ({ items }: MenuProps) => {
   const [isOpen, toggle] = React.useState(false)
 
-  const handleClick = (e: React.MouseEvent) => {
-    toggle(!isOpen)
-  }
+  const handleClick = () => toggle(!isOpen)
 
   return (
-    <nav className="container flex justify-end relative">
-      <button className="flex lg:hidden items-center" onClick={handleClick}>
-        {!isOpen ? (
-          <FiMenu className="w-5 h-5" />
-        ) : (
-          <IoChevronDownOutline className="w-5 h-5 fadeIn" />
-        )}
-        {label && (
-          <h3 className="text-2xl font-medium text-blue-500 pl-3">{label}</h3>
-        )}
+    <div className="md:hidden">
+      <button
+        className="relative w-11 h-11 -mr-3 flex items-center justify-center"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
+        onClick={handleClick}
+      >
+        <span
+          className={`absolute h-px w-4 bg-ink transition-transform duration-300 ${
+            isOpen ? "rotate-45" : "-translate-y-[3px]"
+          }`}
+        />
+        <span
+          className={`absolute h-px w-4 bg-ink transition-transform duration-300 ${
+            isOpen ? "-rotate-45" : "translate-y-[3px]"
+          }`}
+        />
       </button>
       {isOpen && (
-        <div className="flex flex-col top-3/4 absolute border border-white bg-grayDarkest fadeIn">
+        <nav
+          aria-label="Primary"
+          className="globalnav fixed inset-x-0 top-11 bottom-0 px-12 pt-6 fadeIn"
+        >
           {items?.map(item => (
             <MenuItem key={item.href} onClick={handleClick} {...item} />
           ))}
-        </div>
+        </nav>
       )}
-    </nav>
+    </div>
   )
 }

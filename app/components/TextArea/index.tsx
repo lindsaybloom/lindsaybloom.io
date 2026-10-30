@@ -8,20 +8,22 @@ type TextAreaProps = React.InputHTMLAttributes<HTMLTextAreaElement> & {
 
 export const TextArea = React.forwardRef(
   (
-    { label, placeholder, onChange, name, value, className }: TextAreaProps,
+    { id, label, placeholder, onChange, name, value, className = "" }: TextAreaProps,
     ref: React.ForwardedRef<HTMLTextAreaElement>
   ) => {
     return (
-      <div className={`form-group flex flex-col items-start ${className}`}>
+      <div className={`flex flex-col items-start text-left ${className}`}>
         {label && (
-          <label htmlFor="input-field" className="mb-3">
+          <label htmlFor={id} className="form-label">
             {label}
           </label>
         )}
         <textarea
+          id={id}
           value={value}
           name={name}
-          className="form-control bg-grayDarkest border border-pinkLightest rounded-md w-full"
+          rows={5}
+          className="form-field resize-y"
           placeholder={placeholder}
           onChange={onChange}
           ref={ref}

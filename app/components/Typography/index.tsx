@@ -1,13 +1,27 @@
 import React from "react"
 
-export const H1 = ({ children, className }: { children: React.ReactNode, className?: string }) => 
-  <h1 className={`text-4xl leading-9 ${className}`}>{children}</h1>
+type TypographyProps = { children: React.ReactNode; className?: string }
 
-export const H3 = ({ children, className }: { children: React.ReactNode, className?: string }) => 
-  <h1 className={`text-2xl leading-9 ${className}`}>{children}</h1>
+export const Hero = ({ children, className = "" }: TypographyProps) => (
+  <h1 className={`t-hero ${className}`}>{children}</h1>
+)
 
-export const Text = ({ children, className }: { children: React.ReactNode, className?: string }) => 
-  <p className={`text-lg ${className}`}>{children}</p>
+export const H1 = ({ children, className = "" }: TypographyProps) => (
+  <h2 className={`t-headline ${className}`}>{children}</h2>
+)
 
-  export const Span = ({ children, className }: { children: React.ReactNode, className?: string }) => 
-  <span className={`text-lg ${className}`}>{children}</span>
+export const H3 = ({ children, className = "" }: TypographyProps) => (
+  <h3 className={`t-callout ${className}`}>{children}</h3>
+)
+
+export const Subhead = ({ children, className = "" }: TypographyProps) => (
+  <p className={`t-subhead ${className}`}>{children}</p>
+)
+
+export const Text = ({ children, className = "" }: TypographyProps) => (
+  <p className={`t-body ${className}`}>{children}</p>
+)
+
+export const Span = ({ children, className = "" }: TypographyProps) => (
+  <span className={`t-body ${className}`}>{children}</span>
+)

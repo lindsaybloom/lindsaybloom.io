@@ -1,29 +1,35 @@
 import config from "../../../config"
-import LogoV2 from "../Logo/logoV2"
+import Logo from "../Logo/logo"
 import { Link } from "remix"
 import { Menu, MenuItemProps } from "../Menu"
 
 const Nav = () => {
-  const menuItems: Array<MenuItemProps> = []
-  config.navLinks.map(({ name, url }) =>
-    menuItems.push({ label: name, href: url })
+  const menuItems: Array<MenuItemProps> = config.navLinks.map(
+    ({ name, url }) => ({ label: name, href: url })
   )
 
   return (
-    <header className="flex flex-row align-middle justify-between py-3 mx-6 text-pinkLightest">
-      <div className="flex flex-row align-middle gap-2 w-60">
-        <Link to="/">
-          <LogoV2 height={60} width={100} />
+    <header className="globalnav sticky top-0 z-50 w-full">
+      <div className="max-w-nav mx-auto h-11 px-[22px] flex items-center justify-between">
+        <Link
+          to="/"
+          aria-label="Lindsay Bloom, home"
+          className="globalnav-link flex items-center"
+        >
+          <Logo height={36} width={36} />
         </Link>
+        <nav
+          aria-label="Primary"
+          className="hidden md:flex flex-1 justify-end gap-10 lg:gap-12 t-micro"
+        >
+          {config.navLinks.map(item => (
+            <Link to={item.url} key={item.name} className="globalnav-link">
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+        <Menu items={menuItems} />
       </div>
-      <Menu items={menuItems} />
-      <nav className="hidden lg:flex flex-row items-center gap-3">
-        {config.navLinks.map(item => (
-          <Link to={item.url} key={item.name}>
-            {item.name}
-          </Link>
-        ))}
-      </nav>
     </header>
   )
 }

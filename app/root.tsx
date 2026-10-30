@@ -68,7 +68,7 @@ export const links: LinksFunction = () => [
 
 export default function App() {
   return (
-    <html className="font-mono bg-grayDarkest text-grayLightest" lang="en">
+    <html lang="en">
       <head>
         <Meta />
         <Links />

@@ -11,99 +11,361 @@
   }
 }
 
-@keyframes fadeOut {
+@keyframes fadeUp {
   from {
-    opacity: 1;
+    opacity: 0;
+    transform: translateY(16px);
   }
   to {
-    opacity: 0;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-html {
-  scroll-behavior: smooth;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 44px;
+  }
+
+  body {
+    @apply bg-white text-ink font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.4705882353;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+    min-width: 320px;
+  }
+
+  a {
+    @apply text-link;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 }
 
 @layer components {
-  .post p,
-  .about p {
-    @apply text-base;
-    @apply font-light;
+  /* Typography scale */
+  .t-hero {
+    @apply font-display;
+    font-size: 56px;
+    line-height: 1.0714285714;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+
+  .t-headline {
+    @apply font-display;
+    font-size: 48px;
+    line-height: 1.0834933333;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+  }
+
+  .t-subhead {
+    @apply font-display;
+    font-size: 28px;
+    line-height: 1.1428571429;
+    font-weight: 400;
+    letter-spacing: 0.007em;
+  }
+
+  .t-callout {
+    @apply font-display;
+    font-size: 24px;
+    line-height: 1.1666666667;
+    font-weight: 600;
+    letter-spacing: 0.009em;
+  }
+
+  .t-intro {
+    @apply font-display;
+    font-size: 21px;
+    line-height: 1.381002381;
+    font-weight: 400;
+    letter-spacing: 0.011em;
+  }
+
+  .t-body {
+    font-size: 17px;
+    line-height: 1.4705882353;
+    font-weight: 400;
+    letter-spacing: -0.022em;
+  }
+
+  .t-eyebrow {
+    @apply font-display;
+    font-size: 21px;
+    line-height: 1.1904761905;
+    font-weight: 600;
+    letter-spacing: 0.011em;
+  }
+
+  .t-caption {
+    font-size: 14px;
+    line-height: 1.2857742857;
+    font-weight: 400;
+    letter-spacing: -0.016em;
+  }
+
+  .t-micro {
+    font-size: 12px;
+    line-height: 1.3333733333;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 1068px) {
+    .t-hero {
+      font-size: 48px;
+      line-height: 1.0834933333;
+    }
+    .t-headline {
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+    .t-subhead {
+      font-size: 24px;
+      line-height: 1.1666666667;
+      letter-spacing: 0.009em;
+    }
+    .t-intro {
+      font-size: 19px;
+      line-height: 1.4211026316;
+    }
+  }
+
+  @media (max-width: 734px) {
+    .t-hero {
+      font-size: 40px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+    .t-headline {
+      font-size: 32px;
+      line-height: 1.125;
+      letter-spacing: 0.004em;
+    }
+    .t-subhead {
+      font-size: 21px;
+      line-height: 1.1904761905;
+      letter-spacing: 0.011em;
+    }
+    .t-callout {
+      font-size: 21px;
+      line-height: 1.1904761905;
+    }
+  }
+
+  /* Layout */
+  .section {
+    @apply w-full overflow-hidden;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+
+  @media (max-width: 734px) {
+    .section {
+      padding-top: 64px;
+      padding-bottom: 64px;
+    }
+  }
+
+  .section-content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 980px;
+    max-width: 87.5%;
+  }
+
+  @media (max-width: 1068px) {
+    .section-content {
+      width: 692px;
+    }
+  }
+
+  .section-content-narrow {
+    margin-left: auto;
+    margin-right: auto;
+    width: 692px;
+    max-width: 87.5%;
+  }
+
+  .tile {
+    @apply rounded-tile;
+  }
+
+  /* Buttons */
+  .button {
+    @apply inline-block rounded-pill border border-transparent text-center no-underline cursor-pointer whitespace-nowrap;
+    padding: 11px 21px;
+    font-size: 17px;
+    line-height: 1.1764805882;
+    letter-spacing: -0.022em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .button:hover {
+    text-decoration: none;
+  }
+
+  .button-primary {
+    @apply bg-accent text-white;
+  }
+
+  .button-primary:hover {
+    @apply bg-accentHover text-white;
+  }
+
+  .button-primary:active {
+    @apply bg-accentActive;
+  }
+
+  .button-secondary {
+    @apply bg-transparent text-link border-link;
+  }
+
+  .button-secondary:hover {
+    @apply bg-accentHover text-white border-transparent;
+  }
+
+  .button:focus-visible,
+  .form-field:focus-visible {
+    outline: 2px solid #0071e3;
+    outline-offset: 2px;
+  }
+
+  .link-chevron::after {
+    content: "\203A";
+    display: inline-block;
+    margin-left: 0.3em;
+    font-size: 1.15em;
+    line-height: 1;
+  }
+
+  /* Forms */
+  .form-field {
+    @apply w-full bg-white text-ink rounded-xl border border-tertiary;
+    padding: 14px 16px;
+    font-size: 17px;
+    line-height: 1.2353641176;
+    letter-spacing: -0.022em;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .form-field:focus {
+    @apply border-accent;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 125, 250, 0.3);
+  }
+
+  .form-label {
+    @apply text-secondary t-caption mb-2;
+  }
+
+  /* Global nav */
+  .globalnav {
+    background: rgba(250, 250, 252, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .globalnav-link {
+    @apply no-underline;
+    color: rgba(0, 0, 0, 0.8);
+    transition: color 0.32s cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  .globalnav-link:hover {
+    @apply text-black no-underline;
+  }
+
+  /* Rich text from Contentful */
+  .rich-text p {
+    @apply mb-4;
+  }
+
+  .rich-text p:last-child {
+    @apply mb-0;
+  }
+
+  .rich-text h2 {
+    @apply t-callout mt-10 mb-4;
+  }
+
+  .rich-text h3 {
+    @apply t-eyebrow mt-8 mb-3;
+  }
+
+  .rich-text ul {
+    @apply list-disc pl-5 mb-4;
+  }
+
+  .rich-text ol {
+    @apply list-decimal pl-5 mb-4;
+  }
+
+  .rich-text li {
     @apply mb-2;
   }
-  .post h2,
-  .about h2 {
-    @apply text-2xl;
-    @apply font-medium;
-    @apply my-4;
+
+  .rich-text li p {
+    @apply mb-0;
   }
 
-  footer .footer-icon {
-    @apply fill-pinkLight;
+  .rich-text img {
+    @apply rounded-tile my-6;
   }
 
-  footer .footer-icon {
-    height: 24px;
-    width: 24px;
+  .rich-text blockquote {
+    @apply border-l-2 border-hairline pl-4 text-secondary my-6;
   }
 
-  .about-photo {
-    width: 200px;
+  .rich-text code {
+    @apply bg-mist rounded px-1;
+    font-size: 0.9em;
   }
 
-  @media only screen and (min-width: 1024px) {
-    .about-photo {
-      width: 300px;
-    }
+  /* Segmented control for jobs */
+  .segmented {
+    @apply inline-flex max-w-full overflow-x-auto bg-cloud rounded-pill p-1 gap-1;
+    scrollbar-width: none;
   }
 
-  .landing-icons svg {
-    width: 50px;
-    height: 50px;
-    @apply fill-white;
+  .segmented::-webkit-scrollbar {
+    display: none;
   }
 
-  @media only screen and (min-width: 1024px) {
-    .landing-icons svg {
-      width: 100px;
-      height: 100px;
-    }
+  .segment {
+    @apply rounded-pill px-4 py-2 t-caption text-ink whitespace-nowrap cursor-pointer select-none;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
   }
 
-  .company .react-tabs__tab--selected {
-    @apply outline-none;
-    @apply overflow-hidden;
-    @apply no-underline;
+  .segment-selected {
+    @apply bg-white;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
   }
 
-  .company .react-tabs__tab--selected::after {
-    @apply bg-pinkLightest;
+  .segment:focus-visible {
+    outline: 2px solid #0071e3;
+    outline-offset: 1px;
   }
 
-  .company .react-tabs__tab--selected::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 1px;
-    bottom: 0;
-    left: 0;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-  }
-
-  .company .react-tabs__tab--selected:focus::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-  }
-
-  .react-tabs__tab-panel--selected,
   .fadeIn {
-    animation: fadeIn 1s;
+    animation: fadeIn 0.6s ease;
   }
 
-  .job li {
-    @apply list-disc;
-    @apply mb-1;
+  .fadeUp {
+    animation: fadeUp 0.8s cubic-bezier(0.28, 0.11, 0.32, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fadeIn,
+    .fadeUp {
+      animation: none;
+    }
   }
 }

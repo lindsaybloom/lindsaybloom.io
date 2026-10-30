@@ -26,15 +26,23 @@ export default function Posts() {
   const posts = useLoaderData<PostsQuery>()
 
   return (
-    <Layout className="py-4 flex flex-col">
-      <EmailSignUp className="mb-6 self-center" />
-      <ul>
-        {posts?.data?.blogPostCollection?.items?.map(post => (
-          <li key={post.slug} className="mb-6">
-            <PostTile post={post} />
-          </li>
-        ))}
-      </ul>
+    <Layout className="bg-mist">
+      <section className="section">
+        <div className="section-content">
+          <h1 className="t-hero text-center">Blog</h1>
+          <p className="t-subhead text-secondary text-center mt-3">
+            Notes on building for the web.
+          </p>
+          <ul className="mt-12 grid md:grid-cols-2 gap-5">
+            {posts?.data?.blogPostCollection?.items?.map(post => (
+              <li key={post.slug}>
+                <PostTile post={post} />
+              </li>
+            ))}
+          </ul>
+          <EmailSignUp className="mt-12 max-w-reading mx-auto" />
+        </div>
+      </section>
     </Layout>
   )
 }

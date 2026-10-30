@@ -1,5 +1,5 @@
 import React from "react"
-import { H1, Text } from "../../components/Typography"
+import { H3, Text } from "../../components/Typography"
 import { TextInput } from "~/components/TextInput"
 import { Button } from "~/components/Button"
 import { Form, useActionData } from "remix"
@@ -9,7 +9,7 @@ type EmailSignUpProps = {
   className?: string
 }
 
-export const EmailSignUp = ({ className }: EmailSignUpProps) => {
+export const EmailSignUp = ({ className = "" }: EmailSignUpProps) => {
   const [state, setState] = React.useState({})
   const actionData = useActionData()
 
@@ -35,52 +35,47 @@ export const EmailSignUp = ({ className }: EmailSignUpProps) => {
   }, [actionData])
 
   return (
-    <>
-      <div
-        className={`flex flex-col items-center border-1 p-4 w-fit self-center border-2 border-solid border-pinkLightest rounded-2xl ${className}`}
-      >
-        <H1 className="text-center">Sign up for my email list!</H1>
-        <Text className="m-4 text-center">
-          Get an email notification for every post.
-        </Text>
-        {!isOpen ? (
-          <Form
-            id="email-signup"
-            name="email-signup"
-            method="post"
-            data-netlify="true"
-            netlify-honeypot="bot-field"
-            style={{ marginBottom: "0" }}
-          >
-            <input type="hidden" name="form-name" value="email-signup" />
-            <div className="flex flex-col lg:flex-row justify-between gap-3">
-              <TextInput
-                id="input-name"
-                name="name"
-                label="Name"
-                required
-                onChange={handleChange}
-              />
-              <TextInput
-                id="input-email"
-                name="email"
-                input-type="email"
-                label="Email"
-                required
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mt-4 flex gap-3 justify-center">
-              <Button type="submit">Signup</Button>
-            </div>
-          </Form>
-        ) : (
-          <FormSubmitted
-            className="fadeIn"
-            copy="Form successfully submitted"
-          />
-        )}
-      </div>
-    </>
+    <div
+      className={`tile bg-white w-full p-8 lg:p-10 flex flex-col items-center text-center ${className}`}
+    >
+      <H3>Get new posts by email.</H3>
+      <Text className="mt-2 text-secondary">
+        One email for every new post. No spam.
+      </Text>
+      {!isOpen ? (
+        <Form
+          id="email-signup"
+          name="email-signup"
+          method="post"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className="w-full mt-6"
+        >
+          <input type="hidden" name="form-name" value="email-signup" />
+          <div className="grid md:grid-cols-2 gap-4">
+            <TextInput
+              id="input-name"
+              name="name"
+              label="Name"
+              required
+              onChange={handleChange}
+            />
+            <TextInput
+              id="input-email"
+              name="email"
+              type="email"
+              label="Email"
+              required
+              onChange={handleChange}
+            />
+          </div>
+          <div className="mt-6 flex justify-center">
+            <Button type="submit">Sign up</Button>
+          </div>
+        </Form>
+      ) : (
+        <FormSubmitted className="fadeIn" copy="You're on the list." />
+      )}
+    </div>
   )
 }

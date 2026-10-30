@@ -36,19 +36,16 @@ export default function Index() {
   const jobs = queryResult?.data?.jobs?.items
 
   return (
-    <div>
-      <Layout>
-        <Landing
-          className="my-12"
-          tagline={landingTagline}
-          description={landingDescription}
-          imageUrl={landingImageUrl}
-        />
-        <About text={aboutText} photoUrl={photoUrl} />
-        <Tools className="my-12" tools={tools} />
-        <Jobs className="my-12" jobs={jobs} />
-        <Contact />
-      </Layout>
-    </div>
+    <Layout>
+      <Landing
+        tagline={landingTagline}
+        description={landingDescription}
+        imageUrl={landingImageUrl}
+      />
+      <About text={aboutText} photoUrl={photoUrl} />
+      <Tools tools={tools} />
+      <Jobs jobs={jobs} />
+      <Contact />
+    </Layout>
   )
 }

@@ -1,25 +1,42 @@
 import { BsInstagram, BsTwitter, BsGithub, BsLinkedin } from "react-icons/bs"
-import { Span } from "~/components/Typography"
+
+const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/lindsaybloom/",
+    Icon: BsInstagram,
+  },
+  { label: "Twitter", href: "https://www.twitter.com/lbloom97/", Icon: BsTwitter },
+  { label: "GitHub", href: "https://www.github.com/lindsaybloom/", Icon: BsGithub },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/lindsay-bloom/",
+    Icon: BsLinkedin,
+  },
+]
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col lg:flex-row justify-between w-full">
-      <Span className="text-center lg:text-left mb-2 lg:mb-3">
-        Designed &amp; built by Lindsay Bloom {new Date().getFullYear()}
-      </Span>
-      <div className="flex flex-row justify-between w-full lg:w-1/6">
-        <a href="https://www.instagram.com/lindsaybloom/">
-          <BsInstagram className="footer-icon" />
-        </a>
-        <a href="https://www.twitter.com/lbloom97/">
-          <BsTwitter className="footer-icon" />
-        </a>
-        <a href="https://www.github.com/lindsaybloom/">
-          <BsGithub className="footer-icon" />
-        </a>
-        <a href="https://www.linkedin.com/in/lindsay-bloom/">
-          <BsLinkedin className="footer-icon" />
-        </a>
+    <footer className="bg-mist t-micro text-secondary">
+      <div className="section-content py-5">
+        <div className="border-t border-hairline pt-4 flex flex-col-reverse md:flex-row md:items-center justify-between gap-3">
+          <span>
+            Designed &amp; built by Lindsay Bloom. Copyright ©{" "}
+            {new Date().getFullYear()}.
+          </span>
+          <div className="flex gap-5">
+            {socialLinks.map(({ label, href, Icon }) => (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className="text-inkSoft hover:text-ink"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   )

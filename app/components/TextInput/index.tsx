@@ -9,24 +9,32 @@ type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 export const TextInput = React.forwardRef(
   (
     {
+      id,
       label,
       placeholder,
       onChange,
       name,
       value,
       type,
-      className,
+      required,
+      className = "",
     }: TextInputProps,
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     return (
-      <div className={`form-group flex flex-col items-start ${className}`}>
-        {label && <label htmlFor="input-field">{label}</label>}
+      <div className={`flex flex-col items-start text-left ${className}`}>
+        {label && (
+          <label htmlFor={id} className="form-label">
+            {label}
+          </label>
+        )}
         <input
+          id={id}
           type={type}
           value={value}
           name={name}
-          className="bg-grayDarkest focus:outline-none border-b-2 border-pinkLightest w-full"
+          required={required}
+          className="form-field"
           placeholder={placeholder}
           onChange={onChange}
           ref={ref}
